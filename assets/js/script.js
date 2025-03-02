@@ -5,6 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas();
 });
 
+//////////////////////////////////////////////////
+////////// Lenis
+const lenis = new Lenis()
+
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.ticker.add((time)=>{
+    lenis.raf(time * 500)
+})
+
+gsap.ticker.lagSmoothing(0)
+
 
 //////////////////////////////////////////////////
 ////////// Section
