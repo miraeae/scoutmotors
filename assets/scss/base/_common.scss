@@ -1,0 +1,118 @@
+html{
+    @include tablet {
+        font-size: 15px;
+    }
+    @include mobile {
+        font-size: 14px;
+    }
+}
+
+body {
+    font-family: $font-default;
+}
+
+h1, h2 {
+    letter-spacing: -0.08rem;
+    font-family: $font-wide;
+}
+
+:root {
+    --grid-margin: 1.25rem;
+    --grid-spacing: clamp(3.5rem, 3.07rem + 2.14vw, 5rem); // 기본적으로 3.07rem + 2.14vw 따라가고, 3.5rem보다 작아지지 않고, 5rem보다 커지지않음
+}
+
+::-webkit-selection {
+    background: rgba(0, 0, 0, 1);
+    color:#fff;
+}
+::-moz-selection {
+    background: rgba(0, 0, 0, 1);
+    color:#fff;
+}
+::selection {
+    background: rgba(0, 0, 0, 1);
+    color:#fff;
+}
+
+.pc-only{
+    @include tablet {
+        display: none !important;
+    }
+}
+
+.tb-show{
+    display: none !important;
+    @include tablet {
+        display: block !important;
+    }
+}
+
+.mo-only{
+    display: none !important;
+    @include mobile {
+        display: block !important;
+    }
+}
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: polygon(0 0, 0 0, 0 0);
+    white-space: nowrap;
+}
+
+.scroll-lock {
+    height: 100%;
+    min-height: 100%;
+    overflow:hidden;
+    touch-action:none;
+}
+
+.box-button{
+    display: inline-block;
+    font-size: 0.875rem;
+    padding:12px 22px;
+    border-radius: 2px;
+    color: $color-white;
+    text-transform: uppercase;
+    max-width: fit-content;
+    font-family: $font-mono;
+    transition: all .5s;
+
+    &--white {
+        background-color: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0);
+
+        &:hover{
+            border: 1px solid rgba(255,255,255,1);
+        }
+    }
+
+    &--gray{
+        background-color: #EDE9E8;
+        color: $color-black;
+
+        &:hover{
+            background-color: color-mix(in srgb, black 10%, #EDE9E8);
+        }
+    }
+
+    &--primary{
+        background-color: #FF5432;
+
+        &:hover{
+            background-color: color-mix(in srgb, black 10%, #FF5432);
+        }
+    }
+
+    &--black {
+        background-color: #11232F;
+
+        &:hover{
+            background-color: color-mix(in srgb, white 20%, #11232F);
+        }
+    }
+}

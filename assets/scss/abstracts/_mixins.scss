@@ -1,0 +1,46 @@
+// Break Point
+@mixin pc {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: #{$laptop}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin mobile480 {
+  @media (max-width: #{$mobile480}) {
+    @content;
+  }
+}
+
+@mixin bgDust($background-color: #ede9e8) {
+  background: url(../images/dust.png) $background-color;
+  background-size: 200px;
+}
+
+@mixin fancyLine($color: rgba(0,0,0,0.3), $border-radius: 4px 4px 0 0) {
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 9px;
+    border: 1px solid $color;
+    border-radius: $border-radius;
+  }
+}

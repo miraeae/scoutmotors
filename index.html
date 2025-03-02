@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scout Motors clone coding</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>  
+    <script src="./assets/js/script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header__outer">
+            <div class="header__col header__col--left">
+                <div class="logo">
+                    <a href="/"><img src="./assets/images/logo-2x.png" alt="로고"></a>
+                </div>
+                <nav class="gnb">
+                    <ul class="gnb__list">
+                        <li class="gnb__item"><a class="gnb__item-link header__link" href="#">Traveler SUV</a></li>
+                        <li class="gnb__item"><a class="gnb__item-link header__link" href="#">Terra Truck</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__col header__col--right">
+                <div class="header__reserve">
+                    <a class="header__reserve-link header__link" href="#">Reserve</a>
+                </div>
+                <button class="menu-toggle">
+                    <span class="menu-toggle__bar"></span>
+                    <span class="menu-toggle__bar"></span>
+                </button>
+            </div>
+        </div>
+        <div class="menu">
+            <nav class="menu__inner">
+                <div class="menu__logo">
+                    <img src="./assets/images/logo-2x.png" alt="로고">
+                </div>
+                <button class="menu-close">
+                    <span class="menu-close__bar"></span>
+                    <span class="menu-close__bar"></span>
+                </button>
+                <div class="menu__list-wrap">
+                    <ul class="menu__list"> 
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">Our story</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">Community hub</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">Scout Supply</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">Newsroom</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">South Carolina Resources</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">Careers</a>
+                        </li>
+                        <li class="menu__item">
+                            <a class="menu__link"href="#">Support</a>
+                        </li>
+                    </ul>
+                    <ul class="menu__account menu__list">
+                        <li class="menu__account-item menu__item">
+                            <a class="menu__account-link menu__link"href="#">Sign In</a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="menu__product">
+                    <li class="menu__product-item">
+                        <div class="menu__product-item-text-box">
+                            <h5 class="menu__product-item-title">Traveler</h5>
+                            <small class="menu__product-item-subtitle">[SUV]</small>
+                        </div>
+                        <div class="menu__product-item-img-box">
+                            <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                        </div>
+                        <a class="menu__product-item-link" href="#">
+                            <span class="sr-only">Learn more about Traveler</span>
+                        </a>
+                    </li>
+                    <li class="menu__product-item">
+                        <div class="menu__product-item-text-box">
+                            <h5 class="menu__product-item-title">Terra</h5>
+                            <small class="menu__product-item-subtitle">[Truck]</small>
+                        </div>
+                        <div class="menu__product-item-img-box">
+                            <img src="./assets/images/terra_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                        </div>
+                        <a class="menu__product-item-link" href="#">
+                            <span class="sr-only">Learn more about Terra</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="menu__cta reserve-cta">
+                    <div class="reserve-cta__inner">
+                        <div class="reserve-cta__top">
+                            <p class="reserve-cta__text">Reservations open now.</p>
+                            <p class="reserve-cta__text">Be part of the pioneers.</p>
+                        </div>
+                        <hr class="reserve-cta__hr"></hr>
+                        <div class="reserve-cta__btm">
+                            <button aria-hidden="true" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
+                        </div>
+                    </div>
+                    <a href="#" class="reserve-cta__link">
+                        <span class="sr-only">Reserve Now</span>
+                    </a>
+                </div>
+            </nav>
+            <div class="menu__overlay"></div>
+        </div>
+    </header>
+    <main class="container">
+        <section class="sec hero">
+            <div class="hero__contents">
+                <h1 class="hero__title">Scouts always come back.</h1>
+                <div class="hero__text-wrap">
+                    <p class="hero__text">American made</p>
+                    <p class="hero__subtitle">Entry models starting as low as $50,000 with available incentives. Retail prices starting under $60,000.<br/>
+                        Initial production targeted for 2027. Full disclaimer.
+                    </p>
+                    <p class="hero__text">EST 2022</p>
+                </div>
+            </div>
+            <div class="hero__video-bg">
+                <video loop autoplay muted playsinline data-wf-ignore="true">
+                    <source src="./assets/images/hero-video.webm">
+                    <!-- <source src="./assets/images/hero-video.mp4" type="video/mp4"> -->
+                </video>
+            </div>
+        </section>
+        <section class="sec about">
+            <div class="about__contents sec__wrap">
+                <div class="about__text-box about__text-box--top">
+                    <h2 class="about__title">
+                        <span>An off-road</span><br>
+                        <span>icon reborn.</span>
+                    </h2>
+                    <p class="about__desc">The new Scout® Traveler™ and Terra™ models are here. Born from an American legend, retooled for a new era. Ready, 
+                        willing and capable for the road ahead. Or far off it. 1
+                    </p>
+                    <div class="about__button-wrap">
+                        <a class="about__button box-button box-button--white" href="#">Traveler SUV</a>
+                        <a class="about__button box-button box-button--white" href="#">Terra Truck</a>
+                    </div>
+                </div>
+                <div class="about__text-box about__text-box--btm">
+                    <h2 class="about__title">
+                        <span>The one that</span><br>
+                        <span>started it all.</span>
+                    </h2>
+                    <p class="about__desc">The original off-road icon. The one that united work with play. 
+                        The one that made “sport utility” a household term. The one to combine a farm tool with a family hauler, 
+                        and from which all others have followed since. The spirit of the original, retooled and ready for a classic American comeback.
+                    </p>
+                    <a class="about__button box-button box-button--white" href="#">Our story</a>
+                </div>
+            </div>
+            <div class="about__cta reserve-cta reserve-cta--sm">
+                <div class="reserve-cta__inner">
+                    <div class="reserve-cta__top">
+                        <p class="reserve-cta__text">Be part of the pioneers.</p>
+                    </div>
+                    <hr class="reserve-cta__hr"></hr>
+                    <div class="reserve-cta__btm">
+                        <button aria-hidden="true" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
+                    </div>
+                </div>
+                <a href="#" class="reserve-cta__link">
+                    <span class="sr-only">Reserve Now</span>
+                </a>
+            </div>
+            <div class="about__canvas">
+                <canvas id="canvasAbout"></canvas>
+            </div>
+        </section>
+        <section class="sec viewfinder">
+            <div class="viewfinder__top sec__wrap">
+                <p class="viewfinder__top-year">1961</p>
+                <p class="viewfinder__top-text">Before 1961, International Harvester built tools that helped build, feed, and defend America. 
+                    Then they shifted gears, producing sport utility vehicles that soon found a place in American driveways. 
+                    The grit that defined the first generation of tractors and tools for the field translated seamlessly into a new era. 
+                    That same ruggedness still drives Scout Motors today.</p>
+            </div>
+            <div class="viewfinder__rotate">
+                <h2 class="viewfinder__rotate-title">
+                    An icon<br>
+                    from<br>
+                    <span>day one</span>
+                </h2>
+                <svg class="viewfinder__rotate-bg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1345 1034" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"> 
+                    <circle cx="673" cy="517" r="516"></circle> 
+                    <line x1="181" y1="385.5" x2="1163" y2="385.5"></line> 
+                    <line x1="181" y1="641.5" x2="1163" y2="641.5"></line> 
+                    <line x1="1182" y1="385.5" x2="1345" y2="385.5"></line> 
+                    <line x1="1182" y1="641.5" x2="1345" y2="641.5"></line> 
+                    <line x1="-4.37114e-08" y1="385.5" x2="161" y2="385.5"></line> 
+                    <line x1="-4.37114e-08" y1="641.5" x2="161" y2="641.5"></line> 
+                </svg>
+                
+                <ul class="viewfinder__rotate-list">
+                    <li class="viewfinder__rotate-item" style="--rotate-index:0">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-01.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:1">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-02.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:2">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-03.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:3">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-04.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:4">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-05.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:5">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-06.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:6">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-07.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:7">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-08.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:8">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-09.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:9">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-10.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:10">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-11.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="viewfinder__rotate-item" style="--rotate-index:11">
+                        <div class="viewfinder__rotate-item-inner">
+                            <div class="viewfinder__rotate-item-img">
+                                <img src="./assets/images/viewfinder-12.webp" alt="뷰파인더 이미지">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="sec scene">
+            <canvas class="scene__canvas" id="canvasScene"></canvas>
+        </section>
+        <section class="sec camp">
+            <div class="camp__contents sec__wrap">
+                <h2 class="camp__title">
+                    <span><span>For</span></span>
+                    <span><span>the scout</span></span>
+                    <span><span>in all</span></span>
+                    <span><span>of us.</span></span>
+                </h2>
+                <p class="camp__text">Our roots run deep, but they don’t define us. We’re blending DNA from the SUV that started it all with the pulse of modern technology to create something unique, 
+                    a true original just like the first Scouts. This is more than a vehicle; it’s a legacy of exploration and adventure, reimagined for today.
+                </p>
+            </div>
+            <div class="camp__deco">
+                <p aria-hidden="true" class="camp__deco-text  camp__deco-text--top">41°03'36.0&quot;N ↔ 85°04'33.2&quot;W</p>
+                <p aria-hidden="true" class="camp__deco-text camp__deco-text--btm">34°12'44.4&quot;N ↔ 80°59'38.7&quot;W</p>
+                <img aria-hidden="true" class="camp__deco-img camp__deco-img--lg" src="./assets/images/cloud-lg.webp" alt="큰 구름 이미지">
+                <img aria-hidden="true" class="camp__deco-img camp__deco-img--md" src="./assets/images/cloud-md.webp" alt="중간 구름 이미지">
+                <img aria-hidden="true" class="camp__deco-img camp__deco-img--sm" src="./assets/images/cloud-sm.webp" alt="작은 구름 이미지">
+                <img aria-hidden="true" class="camp__deco-img camp__deco-img--badge" src="./assets/images/camp-badge.svg" alt="뱃지 이미지">
+            </div>
+            <div class="camp__video-wrap">
+                <video class="camp__video" loop autoplay muted playsinline data-wf-ignore="true">
+                    <source src="./assets/images/camp-video.webm">
+                </video>
+                <img class="camp__img" src="./assets/images/camp-img.png" alt="캠프 이미지">
+            </div>
+        </section>
+        <section class="sec reveal-event">
+            <div class="reveal-event__inner">
+                <div class="reveal-event__title-wrap">
+                    <h2 class="reveal-event__title sec__title">Experience the<br>
+                        reveal event.</h2>
+                    <div class="reveal-event__desc-box">
+                        <p class="reveal-event__desc sec__desc">On October 24, 2024, Scout Motors introduced the next era of rugged trucks and SUVs on a sunlit hill in Franklin, Tennessee.</p>
+                        <p class="reveal-event__desc sec__desc">Relive the full event <a href="https://www.youtube.com/live/3RIvPzJbcGc" rel = "noopener" target="_blank">here.</a></p>
+                    </div>
+                </div>
+                <div class="reveal-event__video">
+                    <video width="100%" controls="" preload="metadata" disablepictureinpicture="" controlslist="nodownload noplaybackrate" poster="./assets/images/gallery-video-thum.jpg">
+                        <source src="https://videos.ctfassets.net/bi0eniwfxrs8/6DpSzBqkk5NvLQLQkCUWWg/1cb76be2be6792e30cbddfdb4f3e8a41/Scout_Reveal_Sizzle_Final_Deliverable.mp4" type="video/mp4"></video>
+                </div>
+            </div>
+        </section>
+        <section class="sec product">
+            <div class="product__title-wrap sec__wrap">
+                <h2 class="product__title sec__title">
+                    The duo<br>
+                    that does it all.
+                </h2>
+            </div>
+            <div class="product__list">
+                <li class="product__item">
+                    <div class="product__item-content">
+                        <h4 class="product__item-title">Traveler</h4>
+                        <p class="product__item-text">The original icon, renewed.</p>
+                        <a aria-hidden="true" class="product__item-button box-button box-button--primary">Discover</a>
+                    </div>
+                    <div class="product__item-bg">
+                        <img src="./assets/images/traveler_product_thumb-03.webp" alt="Traveler 제품 이미지">
+                    </div>
+                    <a class="product__item-link" href="#">
+                        <span class="sr-only">Discover Traveler</span>
+                    </a>
+                </li>
+                <li class="product__item">
+                    <div class="product__item-content">
+                        <h4 class="product__item-title">Terra</h4>
+                        <p class="product__item-text">The no-days-off pickup.</p>
+                        <a aria-hidden="true" class="product__item-button">Discover</a>
+                    </div>
+                    <div class="product__item-bg">
+                        <img src="./assets/images/terra_product_thumb-03.webp" alt="Traveler 제품 이미지">
+                    </div>
+                    <a class="product__item-link" href="#">
+                        <span class="sr-only">Terra Traveler</span>
+                    </a>
+                </li>
+            </div>
+        </section>
+        <section class="sec story">
+            <div class="story__contents sec__wrap">
+                <h2 class="story__title sec__title">In it for the long haul.</h2>
+                <p class="story__desc sec__desc">This is a company as rugged as our vehicles. One that’s built to last, from the dirt up, by passionate people. 
+                    American-born and American-made, Scout vehicles will be engineered in Detroit, built in South Carolina, and backed by the manufacturing and 
+                    production expertise of Volkswagen Group - meaning, there’s plenty of road ahead. 
+                    This is the next great American motor company, forged from the past, heading towards a bright future.
+                </p>
+                <a class="story__button box-button box-button--gray" href="#">Our story</a>
+            </div>
+        </section>
+        <section class="sec legal">
+            <h2 class="sr-only">Legal notes</h2>
+            <ol class="legal__list sec__wrap">
+                <li class="legal__item">Individual performance and off-road capability varies based on model, trim, equipment, conditions, driving style, vehicle maintenance, and terrain. Drivers should always assess conditions and operate vehicles within their limits. Off-road driving may void aspects of the vehicle warranty; consult your Owner’s Manual for guidance.</li>
+                <li class="legal__item">Some features identified are available as options; additional costs may apply. Availability and pricing information will be provided closer to production.</li>
+                <li class="legal__item">Capacities and payload may vary by model and trim, and may depend on total weight. Ensure compliance with safety regulations and local laws when transporting passengers and cargo.</li>
+                <li class="legal__item">Dimensions provided for the concept vehicle are estimates and may vary in the final production model. The specifications are subject to change and should not be relied upon for exact measurements. Please refer to official documentation for finalized specifications when available.</li>
+                <li class="legal__item">"Refuel anywhere" refers to the intended ability for vehicles equipped with onboard generator to be charged at electric charging stations and refueled by gasoline. Always consult the owner's manual for specific operating instructions and limitations.</li>
+                <li class="legal__item">Customization options such as materials, colors, and wheels are subject to availability. Actual options may vary. Please consult our website for the latest updates on customization and pricing availability closer to production.</li>
+                <li class="legal__item">Current pricing is based on models and projections, products are at concept stage and available for reservation but not yet available for purchase. Scout Motors strives to provide transparency in pricing. Actual pricing and availability will be confirmed closer to the production stage, which is subject to change.</li>
+            </ol>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__row footer__row--top">
+            <div class="footer__info">
+                <div class="footer__logo">
+                    <img src="./assets/images/logo-2x.png" alt="로고">
+                </div>
+                <ul class="fnb"> 
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-link">Our story</a> 
+                    </li>
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-ink">Community hub</a> 
+                    </li>
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-ink">Scout Supply</a>
+                    </li>
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-ink">Newsroom</a> 
+                    </li>
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-ink">South Carolina Resources</a>
+                    </li>
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-ink">Careers</a>
+                    </li>
+                    <li class="fnb__item">
+                        <a href="#" class="fnb__item-ink">Support</a>
+                    </li> 
+                </ul>
+                <ul class="footer__product menu__product">
+                    <li class="menu__product-item">
+                        <div class="menu__product-item-text-box">
+                            <h5 class="menu__product-item-title">Traveler</h5>
+                            <small class="menu__product-item-subtitle">[SUV]</small>
+                        </div>
+                        <div class="menu__product-item-img-box">
+                            <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                        </div>
+                        <a class="menu__product-item-link" href="#">
+                            <span class="sr-only">Learn more about Traveler</span>
+                        </a>
+                    </li>
+                    <li class="menu__product-item">
+                        <div class="menu__product-item-text-box">
+                            <h5 class="menu__product-item-title">Terra</h5>
+                            <small class="menu__product-item-subtitle">[Truck]</small>
+                        </div>
+                        <div class="menu__product-item-img-box">
+                            <img src="./assets/images/terra_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                        </div>
+                        <a class="menu__product-item-link" href="#">
+                            <span class="sr-only">Learn more about Terra</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer__community">
+                    <div class="footer__newsletter">
+                        <h3 class="footer__newsletter-title">
+                            Be part of the pioneers.<br>
+                            Stay Connected.
+                        </h3>
+                        <button class="footer__newsletter-button box-button box-button--gray" href="#">Subscribe</button>
+                    </div>
+                    <ul class="footer__sns">
+                        <li class="footer__sns-item">
+                            <a class="footer__sns-link" href="#">
+                                <img src="./assets/images/sns-facebook.png" alt="페이스북 로고">
+                            </a>
+                        </li>
+                        <li class="footer__sns-item">
+                            <a class="footer__sns-link" href="#">
+                                <img src="./assets/images/sns-instagram.png" alt="인스타그램 로고">
+                            </a>
+                        </li>
+                        <li class="footer__sns-item">
+                            <a class="footer__sns-link" href="#">
+                                <img src="./assets/images/sns-youtube.png" alt="유튜브 로고">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <small class="footer__legal-copyright">
+                    © 2025 scout motors inc. or its affiliates. ALL RIGHTS RESERVED
+                </small>
+                <ul class="footer__legal-list"> 
+                    <li class="footer__legal-item">
+                        <a class="footer__legal-link"href="#">Code of conduct</a>
+                    </li>
+                    <li class="footer__legal-item">
+                        <a class="footer__legal-link"href="#">Vendor Setup</a>
+                    </li>
+                    <li class="footer__legal-item">
+                        <a class="footer__legal-link"href="#">Privacy</a>
+                    </li>
+                    <li class="footer__legal-item">
+                        <a class="footer__legal-link"href="#">Terms of use</a>
+                    </li>
+                    <li class="footer__legal-item">
+                        <a class="footer__legal-link"href="#">Cookies</a>
+                    </li>
+                    <li class="footer__legal-item">
+                        <a class="footer__legal-link"href="#">Legal</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__bg">
+                <img src="./assets/images/footer-bg.webp" alt="달리는 차량 이미지">
+            </div>
+        </div>
+        <div class="footer__row footer__row--btm">
+            <div class="footer__fixed-area">
+                <div class="footer__fixed">
+                    <div aria-hidden="true" class="footer__marquee">
+                        <span>Reserve</span>
+                        <span>Reserve</span>
+                    </div>
+                    <button class="footer__button box-button box-button--black">Reserve Now</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
