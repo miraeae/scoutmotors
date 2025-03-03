@@ -1,5 +1,8 @@
 /* Footer */
 .footer{
+    position: relative;
+    z-index: 1;
+    
     &__row--top{
         position: relative;
         padding: 56px 16px 16px;
@@ -156,35 +159,7 @@
         }
     }
 
-    // &__row--btm{
-    //     position: relative;
-    //     display: grid;
-    //     align-content: stretch;
-    //     justify-content: stretch;
-    //     background-color: #FF5432;
-    // }
-
-    // &__sticky-area{
-    //     position: relative;
-    //     top: -100vh;
-    //     left: 0;
-    //     height: calc(100% + 100vh);
-
-    //     .footer__sticky{
-    //         //position: sticky;
-    //         display: flex;
-    //         overflow: hidden;
-    //         --vw: 18.95px;
-    //         width: calc(100* var(--vw, 1vw)); // width 값 scrollbar 생기는 이슈
-    //         top: 0;
-    //         left: 0;
-    //         transform: translateY(max(100svh - 100%, 0px));
-    //     }
-    // }
-
     &__row--btm{
-        position: relative;
-        z-index: 1;
         display: grid;
         align-content: stretch;
         background-color: #FF5432;

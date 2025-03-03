@@ -2,11 +2,10 @@
 .container {
     position: relative;
     z-index: 2;
+    background-color: $color-white;
 }
 
 .sec {
-    background-color: $color-white;
-
     &__wrap{
         position: relative;
         width: 100%;
@@ -36,7 +35,8 @@
     height: 100svh;
     color: $color-white;
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    background-color: $color-white;
 
     &__contents {
         position: relative;
@@ -106,6 +106,7 @@
     z-index: 1;
     margin-top: -99.9vh;
     margin-bottom: -100vh;
+    height: 100%;
 
     &__inner{
         position: relative;
@@ -194,7 +195,6 @@
     z-index: 2;
     padding:var(--grid-spacing) 0 20vw;
     @include bgDust;
-    //clip-path: inset(0% 6.25rem round 10px);
     clip-path: inset(10% round 20px);
 
     &__top {
@@ -318,8 +318,6 @@
             }
         }
 
-
-
         &-bg {
             position: absolute;
             top: 50%;
@@ -351,11 +349,13 @@
 /* Camp */
 .camp{
     position: relative;
+    z-index: 2;
     padding-top: 160px;
     background: #2c3262;
     background: linear-gradient(to top, #b58c78, #2c3262 60%);
     color: $color-white;
     overflow: hidden;
+    margin-top: -100vh;
 
     &:before{
         content: '';

@@ -23,13 +23,11 @@ gsap.ticker.lagSmoothing(0)
 //////////////////////////////////////////////////
 ////////// Section
 function section() {
-    // Hero
-    //const heroTl = gsap.timeline({repeat: -1, repeatDelay: 5});
-    gsap
-    .from(".hero__title", {opacity:0, y:30, duration:1})
+    ///// Hero
+    gsap.from(".hero__title", {opacity: 0, y: 30, duration: 1, delay: 1})
 
 
-    // About
+    ///// About
     const aboutTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".about",
@@ -59,28 +57,7 @@ function section() {
     .to({}, { duration: 1 }); // 종료 지연
 
 
-    // for(let i = 1; i < 3; i++) {
-    //     if (i === 1) {
-    //         aboutTl
-    //             .to({},{delay:0.2})
-    //             .to(".about__cta",{ opacity: 1})
-    //             .to(".about__cta", {opacity: 0})
-    //     } else {
-    //         aboutTl
-    //         .to(".about__cta", {opacity: 0})
-    //     }
-    //     aboutTl
-    //     .to(`.about__text-box:nth-child(${i})`, {autoAlpha: 1})
-    //     .from(`.about__text-box:nth-child(${i}) .about__title span`, {opacity:0, y:10, stagger: 0.1}, "<")
-    //     .from(`.about__text-box:nth-child(${i}) .about__desc`,{opacity:0, y:10}, "<")
-    //     .from(`.about__text-box:nth-child(${i}) .about__button-wrap`, {opacity:0, y:10}, "<")
-    //     .to(`.about__text-box:nth-child(${i}) .about__title span`, {"--active-line": "100%", stagger: 0.5}, "<")
-    //     .to(`.about__text-box:nth-child(${i})`, {autoAlpha: 0})
-    //     .to({},{duration:2})
-    // }
-
-
-    // Viewfinder
+    ///// Viewfinder
     gsap.timeline({
         scrollTrigger: {
             trigger: ".viewfinder",
@@ -92,7 +69,7 @@ function section() {
     })
     .to(".viewfinder", {"clip-path":"inset(0% round 0px)",ease:"none"})
 
-
+    // rotate
     gsap.to(".viewfinder__rotate-list", {rotate: 360, ease: Linear.easeNone,
         scrollTrigger: {
             trigger: ".viewfinder",
@@ -119,7 +96,7 @@ function section() {
     });
 
     
-    // Scene
+    ///// Scene
     gsap.timeline({
         scrollTrigger: {
             trigger: ".scene",
@@ -132,7 +109,7 @@ function section() {
     .to(".scene__canvas", {"clip-path":"inset(0% round 0px)",ease:"none"})
 
     
-    // Camp
+    ///// Camp
     gsap.from(".camp__title span span", {yPercent:80,
         scrollTrigger: {
             trigger: ".camp__title",
@@ -144,6 +121,30 @@ function section() {
         }
     })
 
+
+    gsap.utils.toArray(".sec").forEach((sec, i) => {
+        const scrollAnimElements = sec.querySelectorAll(".scroll-anim");
+    
+        const tl = gsap.timeline({ paused: true });
+    
+        scrollAnimElements.forEach((element) => {
+            tl.from(element, {
+                y: 30,
+                autoAlpha: 0,
+                duration: 0.5,
+                stagger: 0.1,
+            });
+        });
+    
+        ScrollTrigger.create({
+            trigger: sec,
+            start: "top center",
+            end: "bottom top",
+            //markers: true,
+            onEnter: () => tl.play(),
+            onLeaveBack: () => tl.reverse(),
+        });
+    });
 }
 
 
