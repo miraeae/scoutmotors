@@ -2,10 +2,13 @@
 .footer{
     position: relative;
     z-index: 1;
+    align-content: stretch;
+    --footer-btm-spacing: 40vw;
     
     &__row--top{
         position: relative;
         padding: 56px 16px 16px;
+        margin-bottom: var(--footer-btm-spacing);
     }
 
     &__info {
@@ -160,21 +163,17 @@
     }
 
     &__row--btm{
-        display: grid;
-        align-content: stretch;
+        position: fixed;
+        bottom:0;
+        width:100%;
         background-color: #FF5432;
+        height: var(--footer-btm-spacing);
+        display: flex;
+        align-items: flex-end;
 
-        .footer__fixed-area{
-            position: relative;
-            margin-bottom: 40vw;
-            height: 100%;
-    
-            .footer__fixed {
-                position: fixed;
-                overflow: hidden;
-                width:100%;
-                bottom:0;
-            }
+        .footer__row-inner{
+            overflow: hidden;
+            width:100%;
         }
     }
 

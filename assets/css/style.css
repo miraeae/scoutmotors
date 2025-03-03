@@ -590,10 +590,13 @@ h1, h2 {
 .footer {
   position: relative;
   z-index: 1;
+  align-content: stretch;
+  --footer-btm-spacing: 40vw;
 }
 .footer__row--top {
   position: relative;
   padding: 56px 16px 16px;
+  margin-bottom: var(--footer-btm-spacing);
 }
 .footer__info {
   position: relative;
@@ -720,20 +723,17 @@ h1, h2 {
   object-fit: cover;
 }
 .footer__row--btm {
-  display: grid;
-  align-content: stretch;
-  background-color: #FF5432;
-}
-.footer__row--btm .footer__fixed-area {
-  position: relative;
-  margin-bottom: 40vw;
-  height: 100%;
-}
-.footer__row--btm .footer__fixed-area .footer__fixed {
   position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #FF5432;
+  height: var(--footer-btm-spacing);
+  display: flex;
+  align-items: flex-end;
+}
+.footer__row--btm .footer__row-inner {
   overflow: hidden;
   width: 100%;
-  bottom: 0;
 }
 .footer__marquee {
   font-size: 35vw;
