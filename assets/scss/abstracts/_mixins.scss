@@ -29,11 +29,13 @@
   }
 }
 
+// Background
 @mixin bgDust($background-color: #ede9e8) {
   background: url(../images/dust.png) $background-color;
   background-size: 200px;
 }
 
+// Deco
 @mixin fancyLine($color: rgba(0,0,0,0.3), $border-radius: 4px 4px 0 0) {
   &:before {
     content: "";

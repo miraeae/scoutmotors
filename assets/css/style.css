@@ -1,3 +1,4 @@
+/* Font */
 /* Scout */
 @font-face {
   font-family: "Scout";
@@ -112,6 +113,7 @@ button {
   cursor: pointer;
 }
 
+/* Common */
 @media (max-width: 1024px) {
   html {
     font-size: 15px;
@@ -193,6 +195,15 @@ h1, h2 {
   touch-action: none;
 }
 
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+/* Button */
 .box-button {
   display: inline-block;
   font-size: 0.875rem;
@@ -231,14 +242,7 @@ h1, h2 {
   background-color: color-mix(in srgb, white 20%, #11232F);
 }
 
-@keyframes marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
+/* Header */
 .header__outer {
   position: fixed;
   z-index: 999;
@@ -583,6 +587,7 @@ h1, h2 {
   display: none;
 }
 
+/* Footer */
 .footer__row--top {
   position: relative;
   padding: 56px 16px 16px;
@@ -752,6 +757,7 @@ h1, h2 {
   padding: 20px 70px;
 }
 
+/* Container */
 .container {
   position: relative;
   z-index: 2;

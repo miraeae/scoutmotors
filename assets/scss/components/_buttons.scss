@@ -1,0 +1,47 @@
+/* Button */
+.box-button{
+    display: inline-block;
+    font-size: 0.875rem;
+    padding:12px 22px;
+    border-radius: 2px;
+    color: $color-white;
+    text-transform: uppercase;
+    max-width: fit-content;
+    font-family: $font-mono;
+    transition: all .5s;
+
+    &--white {
+        background-color: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0);
+
+        &:hover{
+            border: 1px solid rgba(255,255,255,1);
+        }
+    }
+
+    &--gray{
+        background-color: #EDE9E8;
+        color: $color-black;
+
+        &:hover{
+            background-color: color-mix(in srgb, black 10%, #EDE9E8);
+        }
+    }
+
+    &--primary{
+        background-color: #FF5432;
+
+        &:hover{
+            background-color: color-mix(in srgb, black 10%, #FF5432);
+        }
+    }
+
+    &--black {
+        background-color: #11232F;
+
+        &:hover{
+            background-color: color-mix(in srgb, white 20%, #11232F);
+        }
+    }
+}
+
