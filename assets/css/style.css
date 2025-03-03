@@ -313,7 +313,7 @@ h1, h2 {
   flex-grow: 1;
   text-align: center;
 }
-.header__col--right .menu-toggle {
+.header__col--right .menu-trigger {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -324,16 +324,16 @@ h1, h2 {
   border-radius: 6px;
   transition: background-color 0.5s;
 }
-.header__col--right .menu-toggle:hover {
+.header__col--right .menu-trigger:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.header__col--right .menu-toggle span {
+.header__col--right .menu-trigger span {
   display: block;
   width: 24px;
   height: 2px;
   background-color: #010101;
 }
-.header__col--right .menu-toggle span:nth-child(2) {
+.header__col--right .menu-trigger span:nth-child(2) {
   width: 18px;
   margin-left: auto;
 }
@@ -376,9 +376,12 @@ h1, h2 {
   padding: 15px;
   border-radius: 4px;
   overflow: hidden;
+  visibility: hidden;
+  height: 0;
 }
 .menu__logo {
   max-width: 184px;
+  transform-origin: top left;
 }
 .menu-close {
   position: absolute;
@@ -480,6 +483,7 @@ h1, h2 {
   width: 100%;
   height: 100%;
   backdrop-filter: blur(10px);
+  visibility: hidden;
 }
 
 .reserve-cta {
@@ -777,8 +781,11 @@ h1, h2 {
 
 /* Hero */
 .hero {
+  width: 100%;
   height: 100svh;
   color: #fff;
+  position: relative;
+  z-index: 2;
 }
 .hero__contents {
   position: relative;
@@ -844,6 +851,9 @@ h1, h2 {
 /* About */
 .about {
   position: relative;
+  z-index: 1;
+  margin-top: -99.9vh;
+  margin-bottom: -100vh;
 }
 .about__inner {
   position: relative;
@@ -914,9 +924,12 @@ h1, h2 {
 
 /* Viewfinder */
 .viewfinder {
+  position: relative;
+  z-index: 2;
   padding: var(--grid-spacing) 0 20vw;
   background: url(../images/dust.png) #ede9e8;
   background-size: 200px;
+  clip-path: inset(10% round 20px);
 }
 .viewfinder__top {
   margin-bottom: 45px;
@@ -970,6 +983,9 @@ h1, h2 {
   text-transform: capitalize;
 }
 .viewfinder__rotate-title span {
+  display: block;
+}
+.viewfinder__rotate-title span:last-child {
   color: #ff5432;
   position: relative;
   display: inline-block;
@@ -1033,6 +1049,11 @@ h1, h2 {
   top: 0;
   height: 100vh;
   background-color: #010101;
+  background: url(../images/dust.png) #ede9e8;
+  background-size: 200px;
+}
+.scene__canvas {
+  clip-path: inset(10% round 20px);
 }
 
 /* Camp */
@@ -1073,6 +1094,9 @@ h1, h2 {
 .camp__contents .camp__title > span {
   display: block;
   overflow: hidden;
+}
+.camp__contents .camp__title > span span {
+  display: inline-block;
 }
 .camp__contents .camp__title > span:nth-child(1) {
   margin-left: -30vw;

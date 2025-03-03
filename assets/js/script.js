@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
+    layout();
     section();
     canvas();
 });
+
 
 //////////////////////////////////////////////////
 ////////// Lenis
@@ -21,6 +23,12 @@ gsap.ticker.lagSmoothing(0)
 //////////////////////////////////////////////////
 ////////// Section
 function section() {
+    // Hero
+    //const heroTl = gsap.timeline({repeat: -1, repeatDelay: 5});
+    gsap
+    .from(".hero__title", {opacity:0, y:30, duration:1})
+
+
     // About
     const aboutTl = gsap.timeline({
         scrollTrigger: {
@@ -33,21 +41,118 @@ function section() {
         }
     });
 
-    for(let i = 1; i < 3; i++) {
-        if (i === 1) {
-            aboutTl
-                .to(".about__cta", { opacity: 1 }, "<")
-        } else {
-            aboutTl
-            .to(".about__cta", {opacity: 0})
-        }
-
-        aboutTl
-        .to(`.about__text-box:nth-child(${i})`, {autoAlpha: 1})
-        .to(`.about__text-box:nth-child(${i}) .about__title span`, {"--active-line": "100%", stagger: 0.5})
-        .to(`.about__text-box:nth-child(${i})`, {autoAlpha: 0})
+    function animateTextBox(i) {
+        return gsap.timeline()
+            .to(`.about__text-box:nth-child(${i})`, { autoAlpha: 1 })
+            .from(`.about__text-box:nth-child(${i}) .about__title span`, { opacity: 0, y: 20, stagger: 0.1 }, "<")
+            .from(`.about__text-box:nth-child(${i}) .about__desc, .about__text-box:nth-child(${i}) .about__button-wrap`, { opacity: 0, y: 20 }, "<")
+            .to(`.about__text-box:nth-child(${i}) .about__title span`, { "--active-line": "100%", stagger: 0.5 }, "<")
+            .to(`.about__text-box:nth-child(${i})`, { autoAlpha: 0 });
     }
+
+    aboutTl
+    .to({}, { delay: 0.2 }) // 초기 지연
+    .to(".about__cta", { opacity: 1 })
+    .add(animateTextBox(1))
+    .call(() => gsap.to(".about__cta", { opacity: 0 }))
+    .add(animateTextBox(2))
+    .to({}, { duration: 1 }); // 종료 지연
+
+
+    // for(let i = 1; i < 3; i++) {
+    //     if (i === 1) {
+    //         aboutTl
+    //             .to({},{delay:0.2})
+    //             .to(".about__cta",{ opacity: 1})
+    //             .to(".about__cta", {opacity: 0})
+    //     } else {
+    //         aboutTl
+    //         .to(".about__cta", {opacity: 0})
+    //     }
+    //     aboutTl
+    //     .to(`.about__text-box:nth-child(${i})`, {autoAlpha: 1})
+    //     .from(`.about__text-box:nth-child(${i}) .about__title span`, {opacity:0, y:10, stagger: 0.1}, "<")
+    //     .from(`.about__text-box:nth-child(${i}) .about__desc`,{opacity:0, y:10}, "<")
+    //     .from(`.about__text-box:nth-child(${i}) .about__button-wrap`, {opacity:0, y:10}, "<")
+    //     .to(`.about__text-box:nth-child(${i}) .about__title span`, {"--active-line": "100%", stagger: 0.5}, "<")
+    //     .to(`.about__text-box:nth-child(${i})`, {autoAlpha: 0})
+    //     .to({},{duration:2})
+    // }
+
+
+    // Viewfinder
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ".viewfinder",
+            start:"top bottom",
+            end:"top 30%",
+            scrub:2,
+            //markers: true,
+        }
+    })
+    .to(".viewfinder", {"clip-path":"inset(0% round 0px)",ease:"none"})
+
+
+    gsap.to(".viewfinder__rotate-list", {rotate: 360, ease: Linear.easeNone,
+        scrollTrigger: {
+            trigger: ".viewfinder",
+            start:"-50% top",
+            end:"bottom top",
+            scrub: 0.5,
+            //markers: true,
+        }
+    })
+
+    gsap.utils.toArray(".viewfinder__rotate-title span").forEach(item => {
+        gsap.fromTo(item, {yPercent: 20},{
+            yPercent: 0,
+            ease: "none",
+            duration: 0.5,
+            scrollTrigger: {
+                trigger: item,
+                start: "top bottom", 
+                end: "bottom bottom",
+                scrub: 0.5,
+                //markers: true,
+            },  
+        });
+    });
+
+    
+    // Scene
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: ".scene",
+            start:"top bottom",
+            end:"top 30%",
+            scrub:2,
+            //markers: true,
+        }
+    })
+    .to(".scene__canvas", {"clip-path":"inset(0% round 0px)",ease:"none"})
+
+    
+    // Camp
+    gsap.from(".camp__title span span", {yPercent:80,
+        scrollTrigger: {
+            trigger: ".camp__title",
+            start:"-=30% top",
+            end:"bottom bottom",
+            scrub:1,
+            //markers: true,
+            refreshPriority: -1,
+        }
+    })
+
 }
+
+
+
+
+
+
+
+
 
 
 //////////////////////////////////////////////////
@@ -169,4 +274,63 @@ function canvas() {
     resizeCanvas();
 
     window.addEventListener('resize', resizeCanvas, false);
+}
+
+
+//////////////////////////////////////////////////
+////////// Layout
+function layout() {
+    // Heder 
+    let lastScrollY = window.scrollY;
+    const header = document.querySelector(".header__outer");
+
+    $(window).scroll(function() {
+        if (window.scrollY > lastScrollY) {
+            gsap.to(header, {yPercent: -100, opacity: 0})
+        } else {
+            gsap.to(header, {yPercent: 0, opacity: 1})
+        }
+        lastScrollY = window.scrollY;
+    });
+
+    
+    // Heder Menu
+    const menuTl = gsap.timeline({paused: true});
+
+    menuTl
+    .to(".menu",{autoAlpha:1, duration: 0.2})
+    .to(".menu__overlay",{autoAlpha:1, duration: 0.5})
+    .to(".menu__inner",{autoAlpha:1, duration: 0.1})
+    .to(".menu__inner",{height:"auto", duration: 0.5})
+    .from(".menu__logo",{scale:"0.9", duration: 0.5}, "<")
+
+
+    $(".menu-trigger").click(function(){
+        menuTl.play()
+    });
+
+    $(".menu-close").click(function(){
+        menuTl.reverse()
+    });
+
+
+    gsap.fromTo(".footer__bg img",{yPercent: -25},{
+        scrollTrigger: {
+            trigger: ".footer",
+            start: "top bottom",
+            end: "10% top",
+            scrub: true,
+            //markers: true,
+        },
+        yPercent: 0,
+        ease:'none'
+    });
+
+
+
+
+
+    $("a[href='#']").click(function(){
+        e.preventDefault();
+    })
 }
