@@ -294,15 +294,15 @@ function canvas() {
 //////////////////////////////////////////////////
 ////////// Layout
 function layout() {
-    // Heder 
+    // Heder Scroll
     let lastScrollY = window.scrollY;
     const header = document.querySelector(".header__outer");
 
-    $(window).scroll(function() {
+    window.addEventListener("scroll", function () {
         if (window.scrollY > lastScrollY) {
-            gsap.to(header, {yPercent: -100, opacity: 0})
+            gsap.to(header, { yPercent: -100, opacity: 0 });
         } else {
-            gsap.to(header, {yPercent: 0, opacity: 1})
+            gsap.to(header, { yPercent: 0, opacity: 1 });
         }
         lastScrollY = window.scrollY;
     });
@@ -320,37 +320,62 @@ function layout() {
     });
 
     // Heder Menu
+    const body = document.body;
+    const menu = document.querySelector(".menu");
+    const menuTrigger = document.querySelector(".menu-trigger");
+    const menuCloseButton = document.querySelector(".menu-close");
+    const menuLinks = menu.querySelectorAll("a, button"); // 포커스 가능한 요소들(+ input, select, textarea 등)
+
+    function trapFocus(event) {
+        const firstElement = menuLinks[0];
+        const lastElement = menuLinks[menuLinks.length - 1];
+
+        if (event.key === "Tab") {
+            if (event.shiftKey) { // 첫 요소에서 Shift + Tab 하면 마지막 요소로 이동
+                if (document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                }
+            } else { // 마지막 요소 다음 다시 첫 요소로 이동
+                if (document.activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+    }
+
     const mm = gsap.matchMedia();
-    let menuTl; // 전역 범위에서 선언
+    let menuTl; // 전역 변수 선언
 
     mm.add({
-        isDesktop: `(min-width: 1025px)`,
-        isMobile: `(max-width:1024px)`
+        isDesktop: "(min-width: 1025px)",
+        isMobile: "(max-width:1024px)"
     }, (context) => {
-        // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
         let { isDesktop } = context.conditions;
         
         menuTl = gsap.timeline({ paused: true }); // 전역 변수에 할당
- 
+        
         menuTl
         .to(".menu", { autoAlpha: 1, duration: 0.2 })
         .to(".menu__overlay", { autoAlpha: 1, duration: 0.5 })
         .to(".menu__inner", { autoAlpha: 1, duration: 0.1 })
         .to(".menu__inner", { height: isDesktop ? "auto" : "100svh", duration: 0.5 })
         .from(".menu__logo", { scale: "0.9", duration: 0.5 }, "<");
-    }
-    );
-
-    $(".menu-trigger").click(function(){
-        lenis.stop();
-        $("body").addClass("scroll-lock");
-        menuTl.play()
     });
 
-    $(".menu-close").click(function(){
+    menuTrigger.addEventListener("click", function () {
+        lenis.stop();
+        body.classList.add("scroll-lock");
+        menuTl.play();
+        document.addEventListener("keydown", trapFocus);
+    });
+
+    menuCloseButton.addEventListener("click", function () {
         lenis.start();
-        $("body").removeClass("scroll-lock");
-        menuTl.reverse()
+        body.classList.remove("scroll-lock");
+        menuTl.reverse();
+        document.removeEventListener("keydown", trapFocus);
     });
 
 
@@ -365,6 +390,7 @@ function layout() {
         yPercent: 0,
         ease:'none'
     });
+
 
 
     $("a[href='#']").click(function(){
