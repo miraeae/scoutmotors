@@ -261,21 +261,21 @@ function canvas() {
 
     // Resize
     function resizeCanvas() {
-        // 브라우저 현재 화면 사이즈 (검색창 미포함 / 스크롤바 미포함)
-        // window.inner* 는 스크롤바를 포함해서 1920으로 됨 > X가 overflow
-        canvas.width = document.body.clientWidth;
-        canvas.height = document.body.clientHeight;
-
-        canvas2.width = document.body.clientWidth;
-        canvas2.height = document.body.clientHeight;
-
-        canvasAbout(); 
+        const width = document.documentElement.clientWidth;
+        const height = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight; // Safari 대응
+    
+        canvas.width = width;
+        canvas.height = height;
+    
+        canvas2.width = width;
+        canvas2.height = height;
+    
+        canvasAbout();
         canvasScene();
     }
-
+    
+    window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
-
-    window.addEventListener('resize', resizeCanvas, false);
 }
 
 
