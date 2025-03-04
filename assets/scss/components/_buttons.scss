@@ -2,16 +2,17 @@
 .box-button{
     position: relative;
     display: inline-block;
-    font-size: 0.875rem;
+    font-size: 14px;
     padding:12px 22px;
     border-radius: 2px;
     color: $color-white;
     text-transform: uppercase;
     max-width: fit-content;
+    white-space: nowrap;
     font-family: $font-mono;
     transition-property: background-color, border, color;
     transition-duration: .5s;
-
+    
     &--white {
         background-color: rgba(255,255,255,0.1);
         border: 1px solid rgba(255,255,255,0);

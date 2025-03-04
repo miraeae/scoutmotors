@@ -12,11 +12,6 @@ body {
     font-family: $font-default;
 }
 
-h1, h2 {
-    letter-spacing: -0.08rem;
-    font-family: $font-wide;
-}
-
 :root {
     --grid-margin: 1.25rem;
     --grid-spacing: clamp(3.5rem, 3.07rem + 2.14vw, 5rem); // 기본적으로 3.07rem + 2.14vw 따라가고, 3.5rem보다 작아지지 않고, 5rem보다 커지지않음

@@ -23,6 +23,32 @@ gsap.ticker.lagSmoothing(0)
 //////////////////////////////////////////////////
 ////////// Section
 function section() {
+    /// Common scroll animation
+    gsap.utils.toArray(".sec").forEach((sec, i) => {
+        const scrollAnimElements = sec.querySelectorAll(".scroll-anim");
+    
+        const tl = gsap.timeline({ paused: true });
+    
+        scrollAnimElements.forEach((element) => {
+            tl.from(element, {
+                y: 30,
+                autoAlpha: 0,
+                duration: 0.5,
+                stagger: 0.1,
+            });
+        });
+    
+        ScrollTrigger.create({
+            trigger: sec,
+            start: "top center",
+            end: "bottom top",
+            //markers: true,
+            onEnter: () => tl.play(),
+            onLeaveBack: () => tl.reverse(),
+        });
+    });
+
+
     ///// Hero
     gsap.from(".hero__title", {opacity: 0, y: 30, duration: 1, delay: 1})
 
@@ -95,8 +121,17 @@ function section() {
         });
     });
 
+
+    /// Scene
+    ScrollTrigger.create({
+        trigger: ".scene",
+        scrub: 1,
+        start: "0% 0%",
+        end: "600%",
+        pin: true,
+        //markers: true,
+    })
     
-    ///// Scene
     gsap.timeline({
         scrollTrigger: {
             trigger: ".scene",
@@ -113,48 +148,14 @@ function section() {
     gsap.from(".camp__title span span", {yPercent:80,
         scrollTrigger: {
             trigger: ".camp__title",
-            start:"-=30% top",
-            end:"bottom bottom",
+            start:"top bottom",
+            end:"bottom+=30% bottom",
             scrub:1,
-            //markers: true,
+            // markers: true,
             refreshPriority: -1,
         }
     })
-
-
-    gsap.utils.toArray(".sec").forEach((sec, i) => {
-        const scrollAnimElements = sec.querySelectorAll(".scroll-anim");
-    
-        const tl = gsap.timeline({ paused: true });
-    
-        scrollAnimElements.forEach((element) => {
-            tl.from(element, {
-                y: 30,
-                autoAlpha: 0,
-                duration: 0.5,
-                stagger: 0.1,
-            });
-        });
-    
-        ScrollTrigger.create({
-            trigger: sec,
-            start: "top center",
-            end: "bottom top",
-            //markers: true,
-            onEnter: () => tl.play(),
-            onLeaveBack: () => tl.reverse(),
-        });
-    });
 }
-
-
-
-
-
-
-
-
-
 
 //////////////////////////////////////////////////
 ////////// Canvas
@@ -244,7 +245,7 @@ function canvas() {
                 scrub: 1,
                 start: "0% 0%",
                 end: "600%",
-                pin: true,
+                //pin: true,
                 //markers: true
             },
             onUpdate: render,
@@ -260,16 +261,16 @@ function canvas() {
 
     // Resize
     function resizeCanvas() {
-    // 브라우저 현재 화면 사이즈 (검색창 미포함 / 스크롤바 미포함)
-    //window.inner* 는 스크롤바를 포함해서 1920으로 됨 > X가 overflow
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
+        // 브라우저 현재 화면 사이즈 (검색창 미포함 / 스크롤바 미포함)
+        // window.inner* 는 스크롤바를 포함해서 1920으로 됨 > X가 overflow
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight;
 
-    canvas2.width = document.body.clientWidth;
-    canvas2.height = document.body.clientHeight;
+        canvas2.width = document.body.clientWidth;
+        canvas2.height = document.body.clientHeight;
 
-    canvasAbout(); 
-    canvasScene();
+        canvasAbout(); 
+        canvasScene();
     }
 
     resizeCanvas();
@@ -294,23 +295,49 @@ function layout() {
         lastScrollY = window.scrollY;
     });
 
-    
+    ScrollTrigger.create({
+        trigger: ".has-hide",
+        start: "top top",
+        //markers: true,
+        onEnter: () => {
+            gsap.to(header, {autoAlpha: 0, duration: 1})
+        },
+        onLeaveBack: () => {
+            gsap.to(header, {autoAlpha: 1, duration: 1})
+        }
+    });
+
     // Heder Menu
-    const menuTl = gsap.timeline({paused: true});
+    const mm = gsap.matchMedia();
+    let menuTl; // 전역 범위에서 선언
 
-    menuTl
-    .to(".menu",{autoAlpha:1, duration: 0.2})
-    .to(".menu__overlay",{autoAlpha:1, duration: 0.5})
-    .to(".menu__inner",{autoAlpha:1, duration: 0.1})
-    .to(".menu__inner",{height:"auto", duration: 0.5})
-    .from(".menu__logo",{scale:"0.9", duration: 0.5}, "<")
-
+    mm.add({
+        isDesktop: `(min-width: 1025px)`,
+        isMobile: `(max-width:1024px)`
+    }, (context) => {
+        // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
+        let { isDesktop } = context.conditions;
+        
+        menuTl = gsap.timeline({ paused: true }); // 전역 변수에 할당
+ 
+        menuTl
+        .to(".menu", { autoAlpha: 1, duration: 0.2 })
+        .to(".menu__overlay", { autoAlpha: 1, duration: 0.5 })
+        .to(".menu__inner", { autoAlpha: 1, duration: 0.1 })
+        .to(".menu__inner", { height: isDesktop ? "auto" : "100svh", duration: 0.5 })
+        .from(".menu__logo", { scale: "0.9", duration: 0.5 }, "<");
+    }
+    );
 
     $(".menu-trigger").click(function(){
+        lenis.stop();
+        $("body").addClass("scroll-lock");
         menuTl.play()
     });
 
     $(".menu-close").click(function(){
+        lenis.start();
+        $("body").removeClass("scroll-lock");
         menuTl.reverse()
     });
 
@@ -328,10 +355,18 @@ function layout() {
     });
 
 
-
-
-
     $("a[href='#']").click(function(){
         e.preventDefault();
-    })
+    });
+
+    // 리사이즈 끝나고 0.3초마다 리셋
+    let delay = 300;
+    let timer = null;
+
+    window.addEventListener("resize", function(){
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            //console.log('resize');
+        }, delay);
+    });
 }

@@ -16,9 +16,18 @@
     }
 
     &__title {
-        font-size: 72px;
-        width: 50%;
+        font-size: 4.5rem;
         line-height: 1;
+        font-weight: 500;
+        font-family: $font-wide;
+
+        @include tablet {
+            font-size: 3.4667rem;
+        }
+
+        @include mobile {
+            font-size: 3rem;
+        }
     }
 
     &__desc {
@@ -32,7 +41,7 @@
 /* Hero */
 .hero {
     width: 100%;
-    height: 100svh;
+    height: 100dvh;
     color: $color-white;
     position: relative;
     z-index: 3;
@@ -44,12 +53,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
         justify-content: flex-end;
         height: 100%;
         padding: 24px;
-        
-        .hero__title {
-            font-size: 72px;
+        gap: 0.8rem;
+
+        @include tablet {
+            gap: 0.2rem;
         }
 
         .hero__text-wrap{
@@ -59,8 +70,11 @@
             justify-content: space-between;
             margin: 0 auto;
             padding-top: 30px;
-            text-align: center;
             @include fancyLine(rgba(255, 255, 255, 0.3), 0 0 4px 4px);
+
+            @include tablet {
+                justify-content: center;
+            }
             
             &:before{
                 position: absolute;
@@ -78,6 +92,10 @@
                 color: rgba(255,255,255,0.5);
                 text-transform: uppercase;
                 font-family: $font-mono;
+
+                @include tablet {
+                    display: none;
+                }
             }
         }
     }
@@ -107,7 +125,8 @@
     margin-top: -99.9vh;
     margin-bottom: -100vh;
     height: 100%;
-
+    overflow: hidden;
+    
     &__inner{
         position: relative;
     }
@@ -128,15 +147,21 @@
             opacity: 0;
             visibility: hidden;
 
+            @include tablet {
+                justify-content: flex-end;
+                align-items: center;
+                text-align: center;
+                padding-bottom: 20px;
+            }
+
             &--btm{
                 position: absolute;
                 top:0;
+                left:0;
+                width: 100%;
             }
 
             .about__title{
-                font-size: 72px;
-                font-weight: 400;
-                line-height: 1;
 
                 span{
                     position: relative;
@@ -158,8 +183,12 @@
             }
     
             .about__desc{
-                font-size: 1rem;
                 max-width: 482px;
+                color: $color-white;
+
+                @include tablet {
+                    max-width: 320px;
+                }
             }
 
             .about__button-wrap{
@@ -178,16 +207,19 @@
         right: 1.5rem;
         z-index: 3;
         opacity: 0;
+
+        @include tablet {
+            display: none;
+        }
     }
 
-    &__canvas{
+    &__canvas-wrap{
         position: relative;
         z-index: 1;
         height: 100vh;
         background-color: $color-black;
     }
 }
-
 
 /* Viewfinder */
 .viewfinder {
@@ -196,14 +228,24 @@
     padding:var(--grid-spacing) 0 20vw;
     @include bgDust;
     clip-path: inset(10% round 20px);
+    overflow: hidden;
+
+    @include tablet {
+        padding-bottom: 38vw;
+    }
 
     &__top {
         margin-bottom: 45px;
 
+        @include tablet {
+            max-width: 88%;
+            margin: 0 auto 36vw;
+        }
+
         &-year{
             position: relative;
             display: inline-block;
-            font-size: .625rem;
+            font-size: 10px;
             font-weight: 500;
             line-height: 1.2;
             color: $color-primary;
@@ -238,6 +280,10 @@
             line-height: 1.25;
             max-width: 250px;
             margin-top: 10px;
+
+            @include tablet {
+                max-width: 100%;
+            }
         }
     }
 
@@ -275,26 +321,39 @@
             left: 50%;
             transform: translate3d(-50%, -50%, 0);
             counter-reset: number;
+
+            @include tablet {
+                width: 120vw;
+            }
         }
 
         &-item {
             position: absolute;
             top: 0;
             left: 50%;
-            width: 185px;
+            width: 9.5vw;
             height: 100%;
             transform: translateX(-50%) rotate(calc(30deg * var(--rotate-index)));
+
+            @include tablet {
+                width: 20vw;
+            }
 
             &-inner {
                 background-color: $color-white;
                 border-radius: 4px;
                 padding: 5px;
 
+                @include mobile {
+                    padding-top: 2px;
+                }
+
                 &:before {
                     content: "0" counter(number);
                     counter-increment: number;
                     font-family: $font-mono;
-                    font-size: 12px;
+                    font-size: 0.75rem;
+                    line-height: 1;
                 }
             }
 
@@ -308,7 +367,11 @@
 
             &-img {
                 aspect-ratio: 1 / 1;
-                margin-top: 20px;
+                margin-top: 1.25rem;
+
+                @include mobile {
+                    margin-top: 0.7857rem;
+                }
 
                 img {
                     width: 100%;
@@ -336,7 +399,6 @@
 .scene {
     position: relative;
     z-index: 1;
-    top: 0;
     height: 100vh;
     background-color: $color-black;
     @include bgDust;
@@ -355,7 +417,11 @@
     background: linear-gradient(to top, #b58c78, #2c3262 60%);
     color: $color-white;
     overflow: hidden;
-    margin-top: -100vh;
+    margin-top: -100%;
+
+    @include mobile{
+        padding-top: 130px;
+    }
 
     &:before{
         content: '';
@@ -376,13 +442,17 @@
 
         .camp__title{
             font-size: 18.75vw;
-            line-height: 1;
+            line-height: 0.9;
             letter-spacing: -0.02em;
             text-transform: capitalize;
             font-family: $font-default;
             text-align: center;
             font-weight: 500;
             display: inline-block;
+
+            @include mobile {
+                line-height: 1;
+            }
     
             > span {
                 display: block;
@@ -401,16 +471,26 @@
             }
         }
     
-        .camp__text{
+        .camp__desc{
             position: absolute;
             top: 54.5%;
             left: calc(50% + 10vw);
-            width: 380px;
-            opacity: 0.7;
+            max-width: 380px;
+            color: #eaeaea;
+            text-align: justify;
+
+            @include tablet {
+                position: unset;
+                margin-top: 150px;
+            }
+
+            @include mobile {
+                max-width: 300px;
+                margin-top: 80px;
+            }
         }    
     }
 
-    
     &__deco {
         position: absolute;
         top:0;
@@ -425,14 +505,33 @@
             font-family: $font-mono;
             opacity: 0.3;
 
+            @include tablet {
+                width: 100%;
+                text-align: center;
+            }
+
             &--top {
                 top: 21%;
                 right: calc(60% + 18vw);
+
+                @include tablet {
+                    top: 12%;
+                    left: 0;
+                }
             }
 
             &--btm{
                 top: 25%;
                 right: 17.5%;
+
+                @include tablet {
+                    top: 60%;
+                    right: 0;
+                }
+
+                @include mobile {
+                    top: 56%;
+                }
             }
         }
 
@@ -445,6 +544,10 @@
                 width: 100%;
                 top: -15%;
                 left: 0;
+
+                @include mobile {
+                    top: -7%;
+                }
             }
 
             &--md {
@@ -461,8 +564,16 @@
 
             &--badge {
                 width: 7.2vw;
-                bottom: 37%;
-                right: calc(50% + 23vw);
+                top: 56%;
+                left: calc(50% - 30vw);
+
+                @include tablet {
+                    top: 44%;
+                }
+
+                @include mobile {
+                    left: calc(50% - 31vw);
+                }
             }
         }
     }
@@ -473,32 +584,32 @@
         width:100%;
         margin-top: -8vw;
 
+        @include tablet {
+            margin-top: 50px;
+        }
+
         .camp__video  {
-            display: block;
             width:100%;
         }
 
         .camp__img {
-            display: none;
             width:100%;
         }
     }
 
 }
 
-/* Safari 10.1+ */
-@media not all and (min-resolution:.001dpcm)
-{ @supports (-webkit-appearance:none) {
+// /* Safari 10.1+ */
+// @media not all and (min-resolution:.001dpcm)
+// { @supports (-webkit-appearance:none) {
+//     .camp__video {
+//         display: none;
+//     }
 
-    .camp__video {
-        display: none;
-    }
-
-    .camp__img {
-        display: block;
-    }
-	
-}}
+//     .camp__img {
+//         display: block;
+//     }
+// }}
 
 
 .reveal-event{
@@ -516,16 +627,38 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        margin-bottom: 48px;
+        margin-bottom: 3rem;
+
+        @include tablet {
+            align-items: flex-end;
+        }
+
+        @include mobile {
+            flex-direction: column;
+        }
 
         .reveal-event__title{
-            font-size: 72px;
             width: 50%;
-            line-height: 1;
+
+            @include tablet {
+                width: 55%;
+            }
+
+            @include mobile{
+                width: 100%;
+            }
         }
 
         .reveal-event__desc-box{
             width: 50%;
+
+            @include tablet {
+                width: 45%;
+            }
+
+            @include mobile{
+                width: 100%;
+            }
 
             .reveal-event__desc{
                 max-width: 410px;
@@ -540,7 +673,12 @@
 
             }
         }
+    }
 
+    &__video{
+        video {
+            width:100%;
+        }
     }
 }
 
@@ -558,7 +696,15 @@
         }
 
         .product__title {
-            padding-top: 56px;
+            padding-top: 3.5rem;
+            
+            @include tablet {
+                padding-top: 3rem;
+            }
+
+            @include mobile {
+                padding-top: 2.5rem;
+            }
         }
     }
 
@@ -567,47 +713,72 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: .25rem;
         padding: var(--grid-spacing) 16px;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
     }
 
     &__item {
         position: relative;
-        display: flex;
-        flex-direction: column;
         border-radius: 4px;
-        padding: 8px;
+        overflow: hidden;
+        width: 100%;
         color: $color-white;
-        aspect-ratio: 3 / 2;
 
         &:last-child{
-            margin-top: 56px;
+            margin-top: 3.5rem;
+
+            @include mobile {
+                margin-top: 0;
+            }
         }
 
         &-content{
             position: relative;
             z-index: 2;
-            width:100%;
+            width: 100%;
             height: 100%;
-            font-size: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 8px;
+            aspect-ratio: 3 / 2;
 
-            .product__item-title{
-                display: inline-block;
-                width: 50%;
-                font-size: 28px;
-                font-weight: 500;
+            .product__item-heading{
+                font-size: 0;
+
+                .product__item-title{
+                    display: inline-block;
+                    width: 50%;
+                    font-size: 1.75rem;
+                    font-weight: 500;
+                    vertical-align: top;
+    
+                    @include mobile {
+                        font-size: 1.4286rem;
+                    }
+                }
+    
+                .product__item-text{
+                    display: inline-block;
+                    width: 50%;
+                    font-size: 1.75rem;
+                    vertical-align: top;
+                    line-height: 1;
+    
+                    @include mobile {
+                        font-size: 1.4286rem;
+                    }
+                }
             }
 
-            .product__item-text{
-                display: inline-block;
-                width: 50%;
-                font-size: 28px;
-            }
-
-            .product__item-button{
-                position: absolute;
-                left:0;
-                bottom:0;
-                z-index: 2;
-            }
+        // .product__item-button{
+        //     position: absolute;
+        //     left:0;
+        //     bottom:0;
+        //     z-index: 2;
+        // }
         }
 
         &-bg {
@@ -615,7 +786,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            width: 100%;
+            //width: 100%;
             height: 100%;
             overflow: hidden;
 
@@ -658,14 +829,22 @@
 
 .story {
     padding-top: var(--grid-spacing);
-    padding-bottom: calc(var(--grid-spacing) * 2);
+    padding-bottom: var(--grid-spacing);
     
     &__contents {
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         align-items: flex-start;
-        row-gap: 56px;
+        row-gap: 3.5rem;
         @include fancyLine;
+
+        @include tablet {
+            row-gap: 3rem;
+        }
+
+        @include tablet {
+            row-gap: 2.5rem;
+        }
 
         &:before {
             grid-column: span 12;
@@ -677,9 +856,27 @@
         }
         .story__desc{
             grid-column: 7 / span 3;
+
+            @include tablet {
+                grid-column: 1 / span 9;
+                max-width: 332px;
+            }
+
+            @include mobile {
+                grid-column: span 12;
+                max-width: 100%;
+            }
         }
         .story__button{
             grid-column: 11 / span 2;
+
+            @include tablet {
+                grid-column: 10/span 3;
+            }
+
+            @include mobile {
+                grid-column: span 12;
+            }
         }
     }
 }

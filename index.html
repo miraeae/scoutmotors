@@ -125,7 +125,7 @@
     <main class="container">
         <section class="sec hero">
             <div class="hero__contents">
-                <h1 class="hero__title">Scouts always come back.</h1>
+                <h1 class="hero__title sec__title">Scouts always come back.</h1>
                 <div class="hero__text-wrap">
                     <p class="hero__text">American made</p>
                     <p class="hero__subtitle">Entry models starting as low as $50,000 with available incentives. Retail prices starting under $60,000.<br/>
@@ -136,19 +136,19 @@
             </div>
             <div class="hero__video-bg">
                 <video loop autoplay muted playsinline data-wf-ignore="true">
-                    <source src="./assets/images/hero-video.webm">
-                    <!-- <source src="./assets/images/hero-video.mp4" type="video/mp4"> -->
+                    <source src="./assets/images/hero-video.mp4" type="video/mp4">
+                    <source src="./assets/images/hero-video.webm" type="video/webm">
                 </video>
             </div>
         </section>
         <section class="sec about">
             <div class="about__contents sec__wrap">
                 <div class="about__text-box about__text-box--top">
-                    <h2 class="about__title">
+                    <h2 class="about__title sec__title">
                         <span>An off-road</span><br>
                         <span>icon reborn.</span>
                     </h2>
-                    <p class="about__desc">The new Scout® Traveler™ and Terra™ models are here. Born from an American legend, retooled for a new era. Ready, 
+                    <p class="about__desc sec__desc">The new Scout® Traveler™ and Terra™ models are here. Born from an American legend, retooled for a new era. Ready, 
                         willing and capable for the road ahead. Or far off it. 1
                     </p>
                     <div class="about__button-wrap">
@@ -157,11 +157,11 @@
                     </div>
                 </div>
                 <div class="about__text-box about__text-box--btm">
-                    <h2 class="about__title">
+                    <h2 class="about__title sec__title">
                         <span>The one that</span><br>
                         <span>started it all.</span>
                     </h2>
-                    <p class="about__desc">The original off-road icon. The one that united work with play. 
+                    <p class="about__desc sec__desc">The original off-road icon. The one that united work with play. 
                         The one that made “sport utility” a household term. The one to combine a farm tool with a family hauler, 
                         and from which all others have followed since. The spirit of the original, retooled and ready for a classic American comeback.
                     </p>
@@ -184,8 +184,8 @@
                     <span class="sr-only">Reserve Now</span>
                 </a>
             </div>
-            <div class="about__canvas">
-                <canvas id="canvasAbout"></canvas>
+            <div class="about__canvas-wrap">
+                <canvas class="about__canvas" id="canvasAbout"></canvas>
             </div>
         </section>
         <section class="sec viewfinder">
@@ -197,7 +197,7 @@
                     That same ruggedness still drives Scout Motors today.</p>
             </div>
             <div class="viewfinder__rotate">
-                <h2 class="viewfinder__rotate-title">
+                <h2 class="viewfinder__rotate-title sec__title">
                     <span>An icon</span>
                     <span>from</span>
                     <span>day one</span>
@@ -305,13 +305,13 @@
         </section>
         <section class="sec camp">
             <div class="camp__contents sec__wrap">
-                <h2 class="camp__title">
+                <h2 class="camp__title sec__title">
                     <span><span>For</span></span>
                     <span><span>the scout</span></span>
                     <span><span>in all</span></span>
                     <span><span>of us.</span></span>
                 </h2>
-                <p class="camp__text">Our roots run deep, but they don’t define us. We’re blending DNA from the SUV that started it all with the pulse of modern technology to create something unique, 
+                <p class="camp__desc sec__desc">Our roots run deep, but they don’t define us. We’re blending DNA from the SUV that started it all with the pulse of modern technology to create something unique, 
                     a true original just like the first Scouts. This is more than a vehicle; it’s a legacy of exploration and adventure, reimagined for today.
                 </p>
             </div>
@@ -324,10 +324,11 @@
                 <img aria-hidden="true" class="camp__deco-img camp__deco-img--badge" src="./assets/images/camp-badge.svg" alt="뱃지 이미지">
             </div>
             <div class="camp__video-wrap">
-                <video class="camp__video" loop autoplay muted playsinline data-wf-ignore="true">
-                    <source src="./assets/images/camp-video.webm">
+                <video class="camp__video pc-only" loop autoplay muted playsinline data-wf-ignore="true">
+                    <source src="./assets/images/camp-video.webm" type="video/webm">
+                    <!-- <source src="https://www.scoutmotors.com/assets/videos/camp1015-hevc-safari.mp4" type="video/mp4; codecs=&quot;hvc1&quot;"> -->
                 </video>
-                <img class="camp__img" src="./assets/images/camp-img.png" alt="캠프 이미지">
+                <img class="camp__img tb-show" src="./assets/images/camp-img.png" alt="캠프 이미지">
             </div>
         </section>
         <section class="sec reveal-event">
@@ -356,8 +357,10 @@
             <div class="product__list">
                 <li class="product__item scroll-anim">
                     <div class="product__item-content">
-                        <h4 class="product__item-title">Traveler</h4>
-                        <p class="product__item-text">The original icon, renewed.</p>
+                        <div class="product__item-heading">
+                            <h4 class="product__item-title">Traveler</h4>
+                            <p class="product__item-text">The original icon, renewed.</p>
+                        </div>
                         <a aria-hidden="true" class="product__item-button box-button box-button--primary">Discover</a>
                     </div>
                     <div class="product__item-bg">
@@ -369,9 +372,11 @@
                 </li>
                 <li class="product__item scroll-anim">
                     <div class="product__item-content">
-                        <h4 class="product__item-title">Terra</h4>
-                        <p class="product__item-text">The no-days-off pickup.</p>
-                        <a aria-hidden="true" class="product__item-button">Discover</a>
+                        <div class="product__item-heading">
+                            <h4 class="product__item-title">Terra</h4>
+                            <p class="product__item-text">The no-days-off pickup.</p>
+                        </div>
+                        <a aria-hidden="true" class="product__item-button box-button box-button--primary">Discover</a>
                     </div>
                     <div class="product__item-bg">
                         <img src="./assets/images/terra_product_thumb-03.webp" alt="Traveler 제품 이미지">
@@ -382,7 +387,7 @@
                 </li>
             </div>
         </section>
-        <section class="sec story">
+        <section class="sec story has-hide">
             <div class="story__contents sec__wrap">
                 <h2 class="story__title sec__title scroll-anim">In it for the long haul.</h2>
                 <p class="story__desc sec__desc scroll-anim">This is a company as rugged as our vehicles. One that’s built to last, from the dirt up, by passionate people. 
@@ -514,17 +519,16 @@
                 </ul>
             </div>
             <div class="footer__bg">
-                <img src="./assets/images/footer-bg.webp" alt="달리는 차량 이미지">
+                <img class="pc-only" src="./assets/images/footer-bg.webp" alt="달리는 차량 이미지">
+                <img class="tb-show" src="./assets/images/footer-bg-portrait.webp" alt="달리는 차량 이미지">
             </div>
         </div>
         <div class="footer__row footer__row--btm">
-            <div class="footer__row-inner">
-                <div aria-hidden="true" class="footer__marquee">
-                    <span>Reserve</span>
-                    <span>Reserve</span>
-                </div>
-                <button class="footer__button box-button box-button--black">Reserve Now</button>
+            <div aria-hidden="true" class="footer__marquee">
+                <span>Reserve</span>
+                <span>Reserve</span>
             </div>
+            <button class="footer__button box-button box-button--black">Reserve Now</button>
         </div>
     </footer>
 </body>

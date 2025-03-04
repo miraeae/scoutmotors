@@ -3,7 +3,11 @@
     position: relative;
     z-index: 1;
     align-content: stretch;
-    --footer-btm-spacing: 40vw;
+    --footer-btm-spacing: 85vh;
+
+    @include tablet {
+        --footer-btm-spacing: 50vh;
+    }
     
     &__row--top{
         position: relative;
@@ -21,19 +25,45 @@
         grid-template-columns: 3fr 2fr;
         row-gap: var(--grid-spacing);
 
+        @include tablet {
+            grid-template-columns: 1fr;
+        }
+
+        @include mobile {
+            padding: 8px;
+        }
+
         .footer__logo{
-            max-width: 96px;
+            width: 96px;
+
+            @include tablet {
+                width: 72px;
+            }
         }
 
         .fnb {
+            @include tablet {
+                order: 3;
+            }
+
             &__item {
                 font-size: 1.25rem;
                 font-weight: 500;
                 padding: .2rem 0;
 
+                @include tablet {
+                    font-size: 1.1333em;
+                }
+
                 &:hover{
                     text-decoration: underline;
                 }
+            }
+        }
+
+        .footer__product {
+            @include tablet {
+                order: 2;
             }
         }
 
@@ -42,13 +72,26 @@
             flex-direction: column;
             justify-content: space-between;
 
+            @include tablet {
+                order: 4;
+            }
+
             .footer__newsletter{
                 padding: 24px 56px;
+
+                @include tablet {
+                    padding: 0;
+                }
+
                 &-title{
                     font-size: 1.25rem;
                     font-weight: 500;
                     line-height: 1.25;
                     letter-spacing: -.02em;
+
+                    @include tablet {
+                        font-size: 1.1333em;
+                    }
                 }
     
                 &-button {
@@ -62,6 +105,11 @@
                 display: flex;
                 align-self: flex-end;
                 gap: 5px;
+
+                @include tablet {
+                    align-self: flex-start;
+                    margin-top: 1.5rem;
+                }
     
                 &-item{
                     position: relative;
@@ -118,30 +166,64 @@
         z-index: 3;
         color: rgb(234, 234, 234);
         display: flex;
-        justify-content: space-between;
         gap: 10vw;
         min-height: 60vh;
         align-items: flex-end;
 
+        @include tablet {
+            gap: 1rem;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
         &-copyright {
-            font-size: .625rem;
+            font-size: 10px;
             font-weight: 500;
             line-height: 1.2;
             font-family: $font-mono;
             text-transform: uppercase;
+
+            @include tablet {
+                max-width: 260px;
+            }
+
+            @include mobile {
+                order: 2;
+                max-width: 100%;
+            }
         }
 
         &-list {
             display: flex;
             justify-content: space-between;
             flex-grow: 1;
+            gap: 1rem;
+
+            @include tablet {
+                justify-content: flex-end;
+            }
+
+            @include mobile{
+                order: 1;
+                flex-direction: column-reverse;
+                flex-grow: unset;
+                gap: 0.8rem;
+            }
 
             .footer__legal-item{
                 font-family: $font-mono;
                 text-transform: uppercase;
-                font-size: .625rem;
+                font-size: 10px;
                 text-decoration: underline;
                 text-underline-position : under;
+
+                @include mobile {
+                    font-size: 14px;
+                }
             }
         }
     }
@@ -170,25 +252,25 @@
         height: var(--footer-btm-spacing);
         display: flex;
         align-items: flex-end;
-
-        .footer__row-inner{
-            overflow: hidden;
-            width:100%;
-        }
+        overflow: hidden;
+        width:100%;
     }
 
 
     &__marquee{
-        font-size: 35vw;
         display: flex;
-        font-size: 35vw;
+        font-size: 74vh;
         line-height: 1;
         letter-spacing: -.02em;
         color: $color-white;
         font-family: $font-cond;
         font-weight: 600;
         text-transform: uppercase;
-        animation: marquee 8s linear infinite;
+        animation: marquee 15s linear infinite;
+
+        @include tablet {
+            font-size: 46vh;
+        }
 
         span{
             padding-right: .5em;

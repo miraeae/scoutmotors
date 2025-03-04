@@ -7,10 +7,21 @@
         display: flex;
         align-items: center;
         width:100%;
-        max-width: 1240px;
+        max-width: 1400px;
+        padding: 0 80px;
         height: 60px;
         left: 50%;
         transform: translateX(-50%);
+
+        @include tablet {
+            top:25px;
+            width: auto;
+            height: 48px;
+        }
+
+        @include mobile {
+            top:20px;
+        }
 
         &:after {
             content: '';
@@ -22,7 +33,11 @@
             background: $color-primary;
             top: 50%;
             margin-top: -2px;
-            right: 322px;
+            right: 402px;
+
+            @include tablet {
+                right: 293px;
+            }
         }
     }
 
@@ -32,9 +47,14 @@
         background-color: $color-white;
         display: flex;
         align-items: center;
+        gap: 15px;
         height: 100%;
         margin: 0 12px; //deco 영역
         padding: 0 20px;
+
+        @include tablet {
+            margin: 0 11px;
+        }
 
         &:before,
         &:after {
@@ -43,8 +63,12 @@
             display: block;
             width: 12px;
             height: 100%;
-            background: url(../images/header-deco.svg) no-repeat center center / cover;
+            background: url(../images/header-deco.svg) no-repeat center center / contain;
             top:0;
+
+            @include tablet {
+                background: url(../images/header-deco-mo.svg) no-repeat center center / contain;
+            }
         }
 
         &:before{
@@ -61,7 +85,11 @@
             flex-grow: 1;
 
             .logo {
-                max-width: 96px;
+                width: 96px;
+
+                @include tablet {
+                    width: 72px;
+                }
             }
 
             .gnb {
@@ -79,12 +107,22 @@
                         padding-right: 56px;
                     }
                 }
+
+                @include tablet {
+                    display: none;
+                }
             }
         }
 
         // header col right
         &--right {
             width: 310px;
+            flex-shrink: 0;
+
+            @include tablet {
+                // width: auto;
+                width : 202px;
+            }
 
             .header__reserve{
                 flex-grow: 1;
@@ -152,13 +190,16 @@
     align-items: center;
     visibility: hidden;
 
+    @include tablet {
+        top: 0;
+    }
+
     &__inner {
         position: relative;
         z-index:1000;
         background: $color-white;
-        border-radius: 5px;
         display: grid;
-        grid-template-columns: 3fr 500px;
+        grid-template-columns: 1fr 500px;
         gap: 2rem;
         max-width: 1240px;
         padding: 15px;
@@ -166,11 +207,22 @@
         overflow: hidden;
         visibility: hidden;
         height: 0;
+
+        @include tablet {
+            border-radius: 0;
+            grid-template-columns: 1fr;
+            height: 100svh;
+            gap: 4px;
+        }
     }
 
     &__logo{
         max-width: 184px;
         transform-origin: top left;
+
+        @include tablet {
+            max-width: 128px;
+        }
     }
 
     &-close {
@@ -186,6 +238,10 @@
         background-color: rgba(0,0,0,0.1);
         border-radius: 6px;
         transition: background-color .5s;
+
+        @include tablet {
+            right: 15px;
+        }
 
         &:hover {
             background-color: rgba(0,0,0,0.2);
@@ -213,6 +269,11 @@
         gap: 4px;
         padding-right: 90px; //menu-close 영역
         padding-bottom: 32px;
+
+        @include tablet {
+            align-items: flex-end;
+            padding-right: 0;
+        }
     }
 
     &__list {
@@ -224,6 +285,12 @@
             &:hover{
                 text-decoration: underline;
             }
+        }
+    }
+
+    &__list.menu__account {
+        @include tablet {
+            text-align: right;
         }
     }
 
@@ -304,6 +371,10 @@
 .reserve-cta{
     position: relative;
     min-height: 267px;
+
+    @include tablet {
+        min-height: auto;
+    }
 
     &__inner{
         display: flex;
