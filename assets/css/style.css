@@ -1495,12 +1495,23 @@ body {
   }
 }
 .camp__video-wrap .camp__video {
+  display: block;
   width: 100%;
 }
 .camp__video-wrap .camp__img {
+  display: none;
   width: 100%;
 }
 
+/* Safari */
+@supports (-webkit-touch-callout: none) {
+  .camp__video {
+    display: none !important;
+  }
+  .camp__img {
+    display: block !important;
+  }
+}
 .reveal-event {
   background: url(../images/dust.png) #ede9e8;
   background-size: 200px;

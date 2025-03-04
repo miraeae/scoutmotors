@@ -589,27 +589,27 @@
         }
 
         .camp__video  {
+            display: block;
             width:100%;
         }
 
         .camp__img {
+            display: none;
             width:100%;
         }
     }
 
 }
 
-// /* Safari 10.1+ */
-// @media not all and (min-resolution:.001dpcm)
-// { @supports (-webkit-appearance:none) {
-//     .camp__video {
-//         display: none;
-//     }
-
-//     .camp__img {
-//         display: block;
-//     }
-// }}
+/* Safari */
+@supports (-webkit-touch-callout: none) {
+    .camp__video {
+        display: none !important;
+    }
+    .camp__img {
+        display: block !important;
+    }
+}
 
 
 .reveal-event{
