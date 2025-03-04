@@ -32,7 +32,7 @@ function section() {
         scrollAnimElements.forEach((element) => {
             tl.from(element, {
                 y: 30,
-                autoAlpha: 0,
+                opacity: 0,
                 duration: 0.5,
                 stagger: 0.1,
             });
@@ -67,11 +67,11 @@ function section() {
 
     function animateTextBox(i) {
         return gsap.timeline()
-            .to(`.about__text-box:nth-child(${i})`, { autoAlpha: 1 })
+            .to(`.about__text-box:nth-child(${i})`, { opacity: 1, "pointer-events" : "unset"})
             .from(`.about__text-box:nth-child(${i}) .about__title span`, { opacity: 0, y: 20, stagger: 0.1 }, "<")
             .from(`.about__text-box:nth-child(${i}) .about__desc, .about__text-box:nth-child(${i}) .about__button-wrap`, { opacity: 0, y: 20 }, "<")
             .to(`.about__text-box:nth-child(${i}) .about__title span`, { "--active-line": "100%", stagger: 0.5 }, "<")
-            .to(`.about__text-box:nth-child(${i})`, { autoAlpha: 0 });
+            .to(`.about__text-box:nth-child(${i})`, { opacity: 0 });
     }
 
     aboutTl
