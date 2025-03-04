@@ -260,9 +260,20 @@ function canvas() {
     }
 
     // Resize
+    function getViewportHeight() {
+        // 모바일 여부 확인하려면
+        // var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 안드로이드 아이폰을 검사해 체크 or
+        //var isMobile = /Mobi/i.test(window.navigator.userAgent); // "Mobi" 가 User agent에 포함되어 있으면 모바일
+
+        // 모바일 Safari 여부 확인
+        const isMobileSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/.test(navigator.userAgent);
+        
+        return isMobileSafari ? window.innerHeight : document.documentElement.clientHeight;
+    }
+    
     function resizeCanvas() {
         const width = document.documentElement.clientWidth;
-        const height = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight; // Safari 대응
+        const height = getViewportHeight();
     
         canvas.width = width;
         canvas.height = height;
@@ -275,6 +286,7 @@ function canvas() {
     }
     
     window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('orientationchange', resizeCanvas); // 모바일 기기에서 화면 회전 시 높이 조정
     resizeCanvas();
 }
 
