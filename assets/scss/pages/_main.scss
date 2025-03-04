@@ -139,7 +139,7 @@
         transform: translateX(-50%);
 
         .about__text-box{
-            height:100vh;
+            height:100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -216,7 +216,7 @@
     &__canvas-wrap{
         position: relative;
         z-index: 1;
-        height: 100vh;
+        height: 100dvh;
         background-color: $color-black;
     }
 }
@@ -399,7 +399,7 @@
 .scene {
     position: relative;
     z-index: 1;
-    height: 100vh;
+    height: 100dvh;
     background-color: $color-black;
     @include bgDust;
 
