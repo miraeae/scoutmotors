@@ -66,3 +66,21 @@ body {
     overflow:hidden;
     touch-action:none;
 }
+
+.skip-menu {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 9999;
+    //pointer-events: none;
+
+    a {
+        position: absolute;
+        top: -50px;
+        transform: translateX(-50%);
+
+        &:focus {
+            top: 1rem;
+        }
+    }
+}

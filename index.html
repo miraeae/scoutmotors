@@ -19,24 +19,27 @@
     <script src="./assets/js/script.js" defer></script>
 </head>
 <body>
-    <header class="header">
+    <div class="skip-menu">
+        <a href="#container" class="box-button box-button--primary">Skip to main content</a>
+    </div>
+    <header id="header" class="header">
         <div class="header__outer">
             <div class="header__col header__col--left">
                 <div class="logo">
-                    <a href="/"><img src="./assets/images/logo-2x.png" alt="로고"></a>
+                    <a href="#" aria-label="Scout Motors"><img src="./assets/images/logo-2x.png" alt="로고"></a>
                 </div>
                 <nav class="gnb">
                     <ul class="gnb__list">
-                        <li class="gnb__item"><a class="gnb__item-link header__link" href="#">Traveler SUV</a></li>
-                        <li class="gnb__item"><a class="gnb__item-link header__link" href="#">Terra Truck</a></li>
+                        <li class="gnb__item"><a href="#" class="gnb__item-link header__link">Traveler SUV</a></li>
+                        <li class="gnb__item"><a href="#" class="gnb__item-link header__link">Terra Truck</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="header__col header__col--right">
                 <div class="header__reserve">
-                    <a class="header__reserve-link header__link" href="#">Reserve</a>
+                    <a href="#" class="header__reserve-link header__link">Reserve</a>
                 </div>
-                <button class="menu-trigger">
+                <button type="button" aria-label="Menu" class="menu-trigger">
                     <span class="menu-trigger__bar"></span>
                     <span class="menu-trigger__bar"></span>
                 </button>
@@ -45,39 +48,41 @@
         <div class="menu">
             <nav class="menu__inner">
                 <div class="menu__logo">
-                    <img src="./assets/images/logo-2x.png" alt="로고">
+                    <a href="#" aria-label="Scout Motors">
+                        <img src="./assets/images/logo-2x.png" alt="로고">
+                    </a>
                 </div>
-                <button class="menu-close">
+                <button type="button" aria-label="Menu Close" class="menu-close">
                     <span class="menu-close__bar"></span>
                     <span class="menu-close__bar"></span>
                 </button>
                 <div class="menu__list-wrap">
                     <ul class="menu__list"> 
                         <li class="menu__item">
-                            <a class="menu__link"href="#">Our story</a>
+                            <a href="#" class="menu__link">Our story</a>
                         </li>
                         <li class="menu__item">
-                            <a class="menu__link"href="#">Community hub</a>
+                            <a href="#" class="menu__link">Community hub</a>
                         </li>
                         <li class="menu__item">
-                            <a class="menu__link"href="#">Scout Supply</a>
+                            <a href="#" class="menu__link">Scout Supply</a>
                         </li>
                         <li class="menu__item">
-                            <a class="menu__link"href="#">Newsroom</a>
+                            <a href="#" class="menu__link">Newsroom</a>
                         </li>
                         <li class="menu__item">
-                            <a class="menu__link"href="#">South Carolina Resources</a>
+                            <a href="#" class="menu__link">South Carolina Resources</a>
                         </li>
                         <li class="menu__item">
-                            <a class="menu__link"href="#">Careers</a>
+                            <a href="#" class="menu__link">Careers</a>
                         </li>
                         <li class="menu__item">
-                            <a class="menu__link"href="#">Support</a>
+                            <a href="#" class="menu__link">Support</a>
                         </li>
                     </ul>
                     <ul class="menu__account menu__list">
                         <li class="menu__account-item menu__item">
-                            <a class="menu__account-link menu__link"href="#">Sign In</a>
+                            <a href="#" class="menu__account-link menu__link">Sign In</a>
                         </li>
                     </ul>
                 </div>
@@ -90,7 +95,7 @@
                         <div class="menu__product-item-img-box">
                             <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler 차량 이미지">
                         </div>
-                        <a class="menu__product-item-link" href="#">
+                        <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Traveler</span>
                         </a>
                     </li>
@@ -102,7 +107,7 @@
                         <div class="menu__product-item-img-box">
                             <img src="./assets/images/terra_product_thumb-02.webp" alt="Traveler 차량 이미지">
                         </div>
-                        <a class="menu__product-item-link" href="#">
+                        <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Terra</span>
                         </a>
                     </li>
@@ -115,7 +120,7 @@
                         </div>
                         <hr class="reserve-cta__hr"></hr>
                         <div class="reserve-cta__btm">
-                            <button aria-hidden="true" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
+                            <button aria-hidden="true" tabindex="-1" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
                         </div>
                     </div>
                     <a href="#" class="reserve-cta__link">
@@ -126,7 +131,7 @@
             <div class="menu__overlay"></div>
         </div>
     </header>
-    <main class="container">
+    <main id="container" class="container">
         <section class="sec hero">
             <div class="hero__contents">
                 <h1 class="hero__title sec__title">Scouts always come back.</h1>
@@ -146,6 +151,20 @@
             </div>
         </section>
         <section class="sec about">
+            <div class="about__cta reserve-cta reserve-cta--sm">
+                <div class="reserve-cta__inner">
+                    <div class="reserve-cta__top">
+                        <p class="reserve-cta__text">Be part of the pioneers.</p>
+                    </div>
+                    <hr class="reserve-cta__hr"></hr>
+                    <div class="reserve-cta__btm">
+                        <a href="#" aria-hidden="true" tabindex="-1" class="reserve-cta__button box-button box-button--white">Reserve Now</a>
+                    </div>
+                </div>
+                <a href="#" class="reserve-cta__link">
+                    <span class="sr-only">Reserve Now</span>
+                </a>
+            </div>
             <div class="about__contents sec__wrap">
                 <div class="about__text-box about__text-box--top">
                     <h2 class="about__title sec__title">
@@ -156,8 +175,8 @@
                         willing and capable for the road ahead. Or far off it. 1
                     </p>
                     <div class="about__button-wrap">
-                        <a class="about__button box-button box-button--white" href="#">Traveler SUV</a>
-                        <a class="about__button box-button box-button--white" href="#">Terra Truck</a>
+                        <a href="#" class="about__button box-button box-button--white">Traveler SUV</a>
+                        <a href="#" class="about__button box-button box-button--white">Terra Truck</a>
                     </div>
                 </div>
                 <div class="about__text-box about__text-box--btm">
@@ -170,23 +189,9 @@
                         and from which all others have followed since. The spirit of the original, retooled and ready for a classic American comeback.
                     </p>
                     <div class="about__button-wrap">
-                        <a class="about__button box-button box-button--white" href="#">Our story</a>
+                        <a href="#" class="about__button box-button box-button--white">Our story</a>
                     </div>
                 </div>
-            </div>
-            <div class="about__cta reserve-cta reserve-cta--sm">
-                <div class="reserve-cta__inner">
-                    <div class="reserve-cta__top">
-                        <p class="reserve-cta__text">Be part of the pioneers.</p>
-                    </div>
-                    <hr class="reserve-cta__hr"></hr>
-                    <div class="reserve-cta__btm">
-                        <button aria-hidden="true" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
-                    </div>
-                </div>
-                <a href="#" class="reserve-cta__link">
-                    <span class="sr-only">Reserve Now</span>
-                </a>
             </div>
             <div class="about__canvas-wrap">
                 <canvas class="about__canvas" id="canvasAbout"></canvas>
@@ -215,7 +220,6 @@
                     <line x1="-4.37114e-08" y1="385.5" x2="161" y2="385.5"></line> 
                     <line x1="-4.37114e-08" y1="641.5" x2="161" y2="641.5"></line> 
                 </svg>
-                
                 <ul class="viewfinder__rotate-list">
                     <li class="viewfinder__rotate-item" style="--rotate-index:0">
                         <div class="viewfinder__rotate-item-inner">
@@ -347,7 +351,8 @@
                 </div>
                 <div class="reveal-event__video">
                     <video width="100%" controls="" preload="metadata" disablepictureinpicture="" controlslist="nodownload noplaybackrate" poster="./assets/images/gallery-video-thum.jpg">
-                        <source src="https://videos.ctfassets.net/bi0eniwfxrs8/6DpSzBqkk5NvLQLQkCUWWg/1cb76be2be6792e30cbddfdb4f3e8a41/Scout_Reveal_Sizzle_Final_Deliverable.mp4" type="video/mp4"></video>
+                        <source src="https://videos.ctfassets.net/bi0eniwfxrs8/6DpSzBqkk5NvLQLQkCUWWg/1cb76be2be6792e30cbddfdb4f3e8a41/Scout_Reveal_Sizzle_Final_Deliverable.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </section>
@@ -365,12 +370,12 @@
                             <h4 class="product__item-title">Traveler</h4>
                             <p class="product__item-text">The original icon, renewed.</p>
                         </div>
-                        <a aria-hidden="true" class="product__item-button box-button box-button--primary">Discover</a>
+                        <a href="#" aria-hidden="true" tabindex="-1" class="product__item-button box-button box-button--primary">Discover</a>
                     </div>
                     <div class="product__item-bg">
                         <img src="./assets/images/traveler_product_thumb-03.webp" alt="Traveler 제품 이미지">
                     </div>
-                    <a class="product__item-link" href="#">
+                    <a href="#" class="product__item-link">
                         <span class="sr-only">Discover Traveler</span>
                     </a>
                 </li>
@@ -380,13 +385,13 @@
                             <h4 class="product__item-title">Terra</h4>
                             <p class="product__item-text">The no-days-off pickup.</p>
                         </div>
-                        <a aria-hidden="true" class="product__item-button box-button box-button--primary">Discover</a>
+                        <a href="#" aria-hidden="true" tabindex="-1" class="product__item-button box-button box-button--primary">Discover</a>
                     </div>
                     <div class="product__item-bg">
                         <img src="./assets/images/terra_product_thumb-03.webp" alt="Traveler 제품 이미지">
                     </div>
-                    <a class="product__item-link" href="#">
-                        <span class="sr-only">Terra Traveler</span>
+                    <a href="#" class="product__item-link">
+                        <span class="sr-only">Discover Terra</span>
                     </a>
                 </li>
             </div>
@@ -399,7 +404,7 @@
                     production expertise of Volkswagen Group - meaning, there’s plenty of road ahead. 
                     This is the next great American motor company, forged from the past, heading towards a bright future.
                 </p>
-                <a class="story__button box-button box-button--gray scroll-anim" href="#">Our story</a>
+                <a href="#" class="story__button box-button box-button--gray scroll-anim">Our story</a>
             </div>
         </section>
         <section class="sec legal">
@@ -415,11 +420,13 @@
             </ol>
         </section>
     </main>
-    <footer class="footer">
+    <footer id="footer" class="footer">
         <div class="footer__row footer__row--top">
             <div class="footer__info">
                 <div class="footer__logo">
-                    <img src="./assets/images/logo-2x.png" alt="로고">
+                    <a href="#" aria-label="Scout Motors">
+                        <img src="./assets/images/logo-2x.png" alt="로고">
+                    </a>
                 </div>
                 <ul class="fnb"> 
                     <li class="fnb__item">
@@ -453,7 +460,7 @@
                         <div class="menu__product-item-img-box">
                             <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler 차량 이미지">
                         </div>
-                        <a class="menu__product-item-link" href="#">
+                        <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Traveler</span>
                         </a>
                     </li>
@@ -465,7 +472,7 @@
                         <div class="menu__product-item-img-box">
                             <img src="./assets/images/terra_product_thumb-02.webp" alt="Traveler 차량 이미지">
                         </div>
-                        <a class="menu__product-item-link" href="#">
+                        <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Terra</span>
                         </a>
                     </li>
@@ -476,21 +483,21 @@
                             Be part of the pioneers.<br>
                             Stay Connected.
                         </h3>
-                        <button class="footer__newsletter-button box-button box-button--gray" href="#">Subscribe</button>
+                        <button class="footer__newsletter-button box-button box-button--gray">Subscribe</button>
                     </div>
                     <ul class="footer__sns">
                         <li class="footer__sns-item">
-                            <a class="footer__sns-link" href="#">
+                            <a href="#" class="footer__sns-link">
                                 <img src="./assets/images/sns-facebook.png" alt="페이스북 로고">
                             </a>
                         </li>
                         <li class="footer__sns-item">
-                            <a class="footer__sns-link" href="#">
+                            <a href="#" class="footer__sns-link">
                                 <img src="./assets/images/sns-instagram.png" alt="인스타그램 로고">
                             </a>
                         </li>
                         <li class="footer__sns-item">
-                            <a class="footer__sns-link" href="#">
+                            <a href="#" class="footer__sns-link">
                                 <img src="./assets/images/sns-youtube.png" alt="유튜브 로고">
                             </a>
                         </li>
@@ -503,22 +510,22 @@
                 </small>
                 <ul class="footer__legal-list"> 
                     <li class="footer__legal-item">
-                        <a class="footer__legal-link"href="#">Code of conduct</a>
+                        <a href="#" class="footer__legal-link">Code of conduct</a>
                     </li>
                     <li class="footer__legal-item">
-                        <a class="footer__legal-link"href="#">Vendor Setup</a>
+                        <a href="#" class="footer__legal-link">Vendor Setup</a>
                     </li>
                     <li class="footer__legal-item">
-                        <a class="footer__legal-link"href="#">Privacy</a>
+                        <a href="#" class="footer__legal-link">Privacy</a>
                     </li>
                     <li class="footer__legal-item">
-                        <a class="footer__legal-link"href="#">Terms of use</a>
+                        <a href="#" class="footer__legal-link">Terms of use</a>
                     </li>
                     <li class="footer__legal-item">
-                        <a class="footer__legal-link"href="#">Cookies</a>
+                        <a href="#" class="footer__legal-link">Cookies</a>
                     </li>
                     <li class="footer__legal-item">
-                        <a class="footer__legal-link"href="#">Legal</a>
+                        <a href="#" class="footer__legal-link">Legal</a>
                     </li>
                 </ul>
             </div>
