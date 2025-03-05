@@ -319,12 +319,32 @@ function layout() {
         }
     });
 
-    // Heder Menu
+    // Header Menu
     const body = document.body;
     const menu = document.querySelector(".menu");
     const menuTrigger = document.querySelector(".menu-trigger");
     const menuCloseButton = document.querySelector(".menu-close");
     const menuLinks = menu.querySelectorAll("a, button"); // 포커스 가능한 요소들(+ input, select, textarea 등)
+
+    // Header menu open animation
+    const mm = gsap.matchMedia();
+    let menuTl; // 전역 변수 선언
+
+    mm.add({
+        isDesktop: "(min-width: 1025px)",
+        isMobile: "(max-width:1024px)"
+    }, (context) => {
+        let { isDesktop } = context.conditions;
+        
+        menuTl = gsap.timeline({ paused: true }); // 전역 변수에 할당
+        
+        menuTl
+        .to(menu, { autoAlpha: 1, duration: 0.2 })
+        .to(".menu__overlay", { autoAlpha: 1, duration: 0.5 })
+        .to(".menu__inner", { autoAlpha: 1, duration: 0.1 })
+        .to(".menu__inner", { height: isDesktop ? "auto" : "100svh", duration: 0.5 })
+        .from(".menu__logo", { scale: "0.9", duration: 0.5 }, "<");
+    });
 
     function trapFocus(event) {
         const firstElement = menuLinks[0];
@@ -345,40 +365,35 @@ function layout() {
         }
     }
 
-    const mm = gsap.matchMedia();
-    let menuTl; // 전역 변수 선언
-
-    mm.add({
-        isDesktop: "(min-width: 1025px)",
-        isMobile: "(max-width:1024px)"
-    }, (context) => {
-        let { isDesktop } = context.conditions;
-        
-        menuTl = gsap.timeline({ paused: true }); // 전역 변수에 할당
-        
-        menuTl
-        .to(".menu", { autoAlpha: 1, duration: 0.2 })
-        .to(".menu__overlay", { autoAlpha: 1, duration: 0.5 })
-        .to(".menu__inner", { autoAlpha: 1, duration: 0.1 })
-        .to(".menu__inner", { height: isDesktop ? "auto" : "100svh", duration: 0.5 })
-        .from(".menu__logo", { scale: "0.9", duration: 0.5 }, "<");
-    });
-
+    // Header menu click event
+    // Open
     menuTrigger.addEventListener("click", function () {
         lenis.stop();
         body.classList.add("scroll-lock");
         menuTl.play();
         document.addEventListener("keydown", trapFocus);
+        menu.setAttribute('aria-expanded', 'true');
     });
 
-    menuCloseButton.addEventListener("click", function () {
+    // Close
+    function closeMenu() {
         lenis.start();
         body.classList.remove("scroll-lock");
         menuTl.reverse();
         document.removeEventListener("keydown", trapFocus);
+        menu.setAttribute('aria-expanded', 'false');
+    }
+
+    menuCloseButton.addEventListener("click", closeMenu);
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && menu.getAttribute('aria-expanded') === 'true') {
+            closeMenu();
+        }
     });
 
 
+    // Footer
     gsap.fromTo(".footer__bg img",{yPercent: -25},{
         scrollTrigger: {
             trigger: ".footer",
@@ -392,12 +407,11 @@ function layout() {
     });
 
 
-
     $("a[href='#']").click(function(){
         e.preventDefault();
     });
 
-    // 리사이즈 끝나고 0.3초마다 리셋
+    // Resize
     let delay = 300;
     let timer = null;
 

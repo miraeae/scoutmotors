@@ -26,37 +26,37 @@
         <div class="header__outer">
             <div class="header__col header__col--left">
                 <div class="logo">
-                    <a href="#" aria-label="Scout Motors"><img src="./assets/images/logo-2x.png" alt="로고"></a>
+                    <a href="#" aria-label="Scout Motors"><img src="./assets/images/logo-2x.png" alt="Scout Motors logo"></a>
                 </div>
-                <nav class="gnb">
-                    <ul class="gnb__list">
-                        <li class="gnb__item"><a href="#" class="gnb__item-link header__link">Traveler SUV</a></li>
-                        <li class="gnb__item"><a href="#" class="gnb__item-link header__link">Terra Truck</a></li>
+                <nav class="header__product header__nav" aria-label="Products">
+                    <ul class="header__list">
+                        <li class="header__item"><a href="#" class="header__link">Traveler SUV</a></li>
+                        <li class="header__item"><a href="#" class="header__link">Terra Truck</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="header__col header__col--right">
-                <div class="header__reserve">
-                    <a href="#" class="header__reserve-link header__link">Reserve</a>
+                <div class="header__reserve header__nav">
+                    <a href="#" class="header__link">Reserve</a>
                 </div>
-                <button type="button" aria-label="Menu" class="menu-trigger">
+                <button type="button" aria-label="Open menu" class="menu-trigger">
                     <span class="menu-trigger__bar"></span>
                     <span class="menu-trigger__bar"></span>
                 </button>
             </div>
         </div>
-        <div class="menu">
-            <nav class="menu__inner">
+        <div class="menu" aria-label="Full menu" aria-expanded="false">
+            <div class="menu__inner">
                 <button type="button" aria-label="Menu Close" class="menu-close">
                     <span class="menu-close__bar"></span>
                     <span class="menu-close__bar"></span>
                 </button>
                 <div class="menu__logo">
                     <a href="#" aria-label="Scout Motors">
-                        <img src="./assets/images/logo-2x.png" alt="로고">
+                        <img src="./assets/images/logo-2x.png" alt="Scout Motors logo">
                     </a>
                 </div>
-                <div class="menu__list-wrap">
+                <nav class="menu__list-wrap" aria-label="Main navigation">
                     <ul class="menu__list"> 
                         <li class="menu__item">
                             <a href="#" class="menu__link">Our story</a>
@@ -85,7 +85,7 @@
                             <a href="#" class="menu__account-link menu__link">Sign In</a>
                         </li>
                     </ul>
-                </div>
+                </nav>
                 <ul class="menu__product">
                     <li class="menu__product-item">
                         <div class="menu__product-item-text-box">
@@ -93,7 +93,7 @@
                             <small class="menu__product-item-subtitle">[SUV]</small>
                         </div>
                         <div class="menu__product-item-img-box">
-                            <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                            <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler SUV image">
                         </div>
                         <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Traveler</span>
@@ -105,7 +105,7 @@
                             <small class="menu__product-item-subtitle">[Truck]</small>
                         </div>
                         <div class="menu__product-item-img-box">
-                            <img src="./assets/images/terra_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                            <img src="./assets/images/terra_product_thumb-02.webp" alt="Terra truck image">
                         </div>
                         <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Terra</span>
@@ -127,8 +127,8 @@
                         <span class="sr-only">Reserve Now</span>
                     </a>
                 </div>
-            </nav>
-            <div class="menu__overlay"></div>
+            </div>
+            <div class="menu__overlay" aria-hidden="true"></div>
         </div>
     </header>
     <main id="container" class="container">
@@ -144,9 +144,10 @@
                 </div>
             </div>
             <div class="hero__video-bg">
-                <video loop autoplay muted playsinline data-wf-ignore="true">
-                    <source src="./assets/images/hero-video.mp4" type="video/mp4">
+                <video loop autoplay muted playsinline aria-label="Promotional video">
                     <source src="./assets/images/hero-video.webm" type="video/webm">
+                    <source src="./assets/images/hero-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
                 </video>
             </div>
         </section>
@@ -224,84 +225,84 @@
                     <li class="viewfinder__rotate-item" style="--rotate-index:0">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-01.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-01.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:1">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-02.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-02.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:2">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-03.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-03.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:3">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-04.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-04.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:4">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-05.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-05.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:5">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-06.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-06.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:6">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-07.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-07.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:7">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-08.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-08.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:8">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-09.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-09.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:9">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-10.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-10.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:10">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-11.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-11.webp" alt="">
                             </div>
                         </div>
                     </li>
                     <li class="viewfinder__rotate-item" style="--rotate-index:11">
                         <div class="viewfinder__rotate-item-inner">
                             <div class="viewfinder__rotate-item-img">
-                                <img src="./assets/images/viewfinder-12.webp" alt="뷰파인더 이미지">
+                                <img src="./assets/images/viewfinder-12.webp" alt="">
                             </div>
                         </div>
                     </li>
@@ -323,20 +324,19 @@
                     a true original just like the first Scouts. This is more than a vehicle; it’s a legacy of exploration and adventure, reimagined for today.
                 </p>
             </div>
-            <div class="camp__deco">
-                <p aria-hidden="true" class="camp__deco-text  camp__deco-text--top">41°03'36.0&quot;N ↔ 85°04'33.2&quot;W</p>
-                <p aria-hidden="true" class="camp__deco-text camp__deco-text--btm">34°12'44.4&quot;N ↔ 80°59'38.7&quot;W</p>
-                <img aria-hidden="true" class="camp__deco-img camp__deco-img--lg" src="./assets/images/cloud-lg.webp" alt="큰 구름 이미지">
-                <img aria-hidden="true" class="camp__deco-img camp__deco-img--md" src="./assets/images/cloud-md.webp" alt="중간 구름 이미지">
-                <img aria-hidden="true" class="camp__deco-img camp__deco-img--sm" src="./assets/images/cloud-sm.webp" alt="작은 구름 이미지">
-                <img aria-hidden="true" class="camp__deco-img camp__deco-img--badge" src="./assets/images/camp-badge.svg" alt="뱃지 이미지">
+            <div aria-hidden="true" class="camp__deco">
+                <p class="camp__deco-text  camp__deco-text--top">41°03'36.0&quot;N ↔ 85°04'33.2&quot;W</p>
+                <p class="camp__deco-text camp__deco-text--btm">34°12'44.4&quot;N ↔ 80°59'38.7&quot;W</p>
+                <img class="camp__deco-img camp__deco-img--lg" src="./assets/images/cloud-lg.webp" alt="">
+                <img class="camp__deco-img camp__deco-img--md" src="./assets/images/cloud-md.webp" alt="">
+                <img class="camp__deco-img camp__deco-img--sm" src="./assets/images/cloud-sm.webp" alt="">
+                <img class="camp__deco-img camp__deco-img--badge" src="./assets/images/camp-badge.svg" alt="">
             </div>
             <div class="camp__video-wrap">
-                <video class="camp__video" loop autoplay muted playsinline data-wf-ignore="true">
+                <video class="camp__video" loop autoplay muted playsinline aria-label="Camp video">
                     <source src="./assets/images/camp-video.webm" type="video/webm">
-                    <!-- <source src="https://www.scoutmotors.com/assets/videos/camp1015-hevc-safari.mp4" type="video/mp4; codecs=&quot;hvc1&quot;"> -->
                 </video>
-                <img class="camp__img" src="./assets/images/camp-img.png" alt="캠프 이미지">
+                <img class="camp__img" src="./assets/images/camp-img.png" alt="Camp image">
             </div>
         </section>
         <section class="sec reveal-event">
@@ -363,7 +363,7 @@
                     that does it all.
                 </h2>
             </div>
-            <div class="product__list">
+            <ul class="product__list">
                 <li class="product__item scroll-anim">
                     <div class="product__item-content">
                         <div class="product__item-heading">
@@ -373,7 +373,7 @@
                         <a href="#" aria-hidden="true" tabindex="-1" class="product__item-button box-button box-button--primary">Discover</a>
                     </div>
                     <div class="product__item-bg">
-                        <img src="./assets/images/traveler_product_thumb-03.webp" alt="Traveler 제품 이미지">
+                        <img src="./assets/images/traveler_product_thumb-03.webp" alt="Traveler SUV product image">
                     </div>
                     <a href="#" class="product__item-link">
                         <span class="sr-only">Discover Traveler</span>
@@ -388,13 +388,13 @@
                         <a href="#" aria-hidden="true" tabindex="-1" class="product__item-button box-button box-button--primary">Discover</a>
                     </div>
                     <div class="product__item-bg">
-                        <img src="./assets/images/terra_product_thumb-03.webp" alt="Traveler 제품 이미지">
+                        <img src="./assets/images/terra_product_thumb-03.webp" alt="Terra Truck product image">
                     </div>
                     <a href="#" class="product__item-link">
                         <span class="sr-only">Discover Terra</span>
                     </a>
                 </li>
-            </div>
+            </ul>
         </section>
         <section class="sec story has-hide">
             <div class="story__contents sec__wrap">
@@ -425,7 +425,7 @@
             <div class="footer__info">
                 <div class="footer__logo">
                     <a href="#" aria-label="Scout Motors">
-                        <img src="./assets/images/logo-2x.png" alt="로고">
+                        <img src="./assets/images/logo-2x.png" alt="Scout Motors logo">
                     </a>
                 </div>
                 <ul class="fnb"> 
@@ -458,7 +458,7 @@
                             <small class="menu__product-item-subtitle">[SUV]</small>
                         </div>
                         <div class="menu__product-item-img-box">
-                            <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                            <img src="./assets/images/traveler_product_thumb-02.webp" alt="Traveler SUV image">
                         </div>
                         <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Traveler</span>
@@ -470,7 +470,7 @@
                             <small class="menu__product-item-subtitle">[Truck]</small>
                         </div>
                         <div class="menu__product-item-img-box">
-                            <img src="./assets/images/terra_product_thumb-02.webp" alt="Traveler 차량 이미지">
+                            <img src="./assets/images/terra_product_thumb-02.webp" alt="Terra truck image">
                         </div>
                         <a href="#" class="menu__product-item-link">
                             <span class="sr-only">Learn more about Terra</span>
@@ -488,17 +488,17 @@
                     <ul class="footer__sns">
                         <li class="footer__sns-item">
                             <a href="#" class="footer__sns-link">
-                                <img src="./assets/images/sns-facebook.png" alt="페이스북 로고">
+                                <img src="./assets/images/sns-facebook.png" alt="facebook icon">
                             </a>
                         </li>
                         <li class="footer__sns-item">
                             <a href="#" class="footer__sns-link">
-                                <img src="./assets/images/sns-instagram.png" alt="인스타그램 로고">
+                                <img src="./assets/images/sns-instagram.png" alt="instagram icon">
                             </a>
                         </li>
                         <li class="footer__sns-item">
                             <a href="#" class="footer__sns-link">
-                                <img src="./assets/images/sns-youtube.png" alt="유튜브 로고">
+                                <img src="./assets/images/sns-youtube.png" alt="youtube icon">
                             </a>
                         </li>
                     </ul>
@@ -508,30 +508,32 @@
                 <small class="footer__legal-copyright">
                     © 2025 scout motors inc. or its affiliates. ALL RIGHTS RESERVED
                 </small>
-                <ul class="footer__legal-list"> 
-                    <li class="footer__legal-item">
-                        <a href="#" class="footer__legal-link">Code of conduct</a>
-                    </li>
-                    <li class="footer__legal-item">
-                        <a href="#" class="footer__legal-link">Vendor Setup</a>
-                    </li>
-                    <li class="footer__legal-item">
-                        <a href="#" class="footer__legal-link">Privacy</a>
-                    </li>
-                    <li class="footer__legal-item">
-                        <a href="#" class="footer__legal-link">Terms of use</a>
-                    </li>
-                    <li class="footer__legal-item">
-                        <a href="#" class="footer__legal-link">Cookies</a>
-                    </li>
-                    <li class="footer__legal-item">
-                        <a href="#" class="footer__legal-link">Legal</a>
-                    </li>
-                </ul>
+                <nav class="footer__nav" aria-label="Footer menu">
+                    <ul class="footer__legal-list"> 
+                        <li class="footer__legal-item">
+                            <a href="#" class="footer__legal-link">Code of conduct</a>
+                        </li>
+                        <li class="footer__legal-item">
+                            <a href="#" class="footer__legal-link">Vendor Setup</a>
+                        </li>
+                        <li class="footer__legal-item">
+                            <a href="#" class="footer__legal-link">Privacy</a>
+                        </li>
+                        <li class="footer__legal-item">
+                            <a href="#" class="footer__legal-link">Terms of use</a>
+                        </li>
+                        <li class="footer__legal-item">
+                            <a href="#" class="footer__legal-link">Cookies</a>
+                        </li>
+                        <li class="footer__legal-item">
+                            <a href="#" class="footer__legal-link">Legal</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <div class="footer__bg">
-                <img class="pc-only" src="./assets/images/footer-bg.webp" alt="달리는 차량 이미지">
-                <img class="tb-show" src="./assets/images/footer-bg-portrait.webp" alt="달리는 차량 이미지">
+                <img class="pc-only" src="./assets/images/footer-bg.webp" alt="">
+                <img class="tb-show" src="./assets/images/footer-bg-portrait.webp" alt="">
             </div>
         </div>
         <div class="footer__row footer__row--btm">
@@ -539,7 +541,7 @@
                 <span>Reserve</span>
                 <span>Reserve</span>
             </div>
-            <button class="footer__button box-button box-button--black">Reserve Now</button>
+            <button class="footer__button box-button box-button--black" role="button">Reserve Now</button>
         </div>
     </footer>
 </body>

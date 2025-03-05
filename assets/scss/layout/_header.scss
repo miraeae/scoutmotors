@@ -92,20 +92,14 @@
                 }
             }
 
-            .gnb {
+            .header__product {
                 flex-grow: 1;
                 display: flex;
                 justify-content: center;
-        
-                &__list {
-                    display: flex;
-                }
-        
-                &__item {
-                    &-link{
-                        padding-left: 56px;
-                        padding-right: 56px;
-                    }
+    
+                .header__link {
+                    padding-left: 56px;
+                    padding-right: 56px;
                 }
 
                 @include tablet {
@@ -160,6 +154,10 @@
     }
     
     // header col common
+    &__list {
+        display: flex;
+    }
+
     &__link {
         display: inline-block;
         font-size: 12px;
