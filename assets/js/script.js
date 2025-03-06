@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     layout();
     section();
     canvas();
+    gallery();
 });
 
 
@@ -355,4 +356,121 @@ function layout() {
             //console.log('resize');
         }, delay);
     });
+}
+
+
+function gallery() {
+    // Thumbs gallery 
+    var thumbSwiper = new Swiper('.gallery-thum', {
+        spaceBetween: 5,
+        freeMode: true, //슬라이드 넘길 때 위치 고정 여부
+        watchSlidesProgress: true, //각 슬라이드의 진행과 visibility를 계산함
+        navigation: {
+            nextEl: ".gallery-thum .swiper-button-next",
+            prevEl: ".gallery-thum .swiper-button-prev"
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 5.5,
+            },
+            480: {
+                slidesPerView: 2.5,
+            }
+        }
+    });
+
+    // Modal gallery
+    var mainSwiper = new Swiper('.gallery-modal__swiper', {
+        spaceBetween: 10,
+        slidesPerView: 1,
+        navigation: {
+            nextEl: ".gallery-modal .swiper-button-next",
+            prevEl: ".gallery-modal .swiper-button-prev"
+        },
+        thumbs: {
+            swiper: thumbSwiper,
+        },
+    });
+
+    // Modal
+    const thumbnailGallery = document.querySelectorAll(".gallery-thum .swiper-slide");
+    const modal = document.querySelector(".gallery-modal");
+    const modalSwiper = document.querySelector(".gallery-modal__swiper").swiper;
+    const closeModalBtn = document.querySelector(".gallery-modal__close");
+    const focusableEls = modal.querySelectorAll("button:not([disabled]), [tabindex]:not([tabindex='-1']");
+
+    // 모든 슬라이드에 tabindex="0" 추가
+    thumbnailGallery.forEach((item, index) => {
+        item.setAttribute("tabindex", "0");
+
+        // 클릭 시 모달 열기
+        item.addEventListener("click", function () {
+            openModal(index);
+        });
+
+        // Enter, Space 키로 모달 열기
+        item.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openModal(index);
+            }
+        });
+    });
+
+    function trapFocus(event) {
+        const firstElement = focusableEls[0];
+        const lastElement = focusableEls[focusableEls.length - 1];
+
+        if (event.key === "Tab") {
+            if (event.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+    }
+
+    function openModal(index) {
+        lenis.stop();
+        document.body.classList.add("scroll-rock");
+        modal.classList.add("open");
+        modal.setAttribute("aria-expanded", "true");
+        modalSwiper.slideTo(index); // 모달 갤러리의 동일한 이미지로 이동
+        closeModalBtn.focus(); // 모달이 열리면 닫기 버튼에 포커스 이동
+        document.addEventListener("keydown", trapFocus);
+    }
+
+    // 클릭 시 모달 닫기
+    closeModalBtn.addEventListener("click", function () {
+        closeModal();
+    });
+
+    // 모달 외부 클릭 시 닫기
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // ESC 키로 닫기
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && modal.getAttribute("aria-expanded") === 'true') {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        lenis.start();
+        document.body.classList.remove("scroll-rock");
+        modal.classList.remove("open");
+        modal.setAttribute("aria-expanded", "false");
+        document.removeEventListener("keydown", trapFocus);
+        thumbnailGallery[modalSwiper.activeIndex].focus(); // 모달이 닫히면 active된 동일 이미지로 포커스 이동
+    }
 }

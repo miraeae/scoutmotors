@@ -683,7 +683,7 @@ body {
 /* Footer */
 .footer {
   position: relative;
-  z-index: 1;
+  z-index: -1;
   align-content: stretch;
   --footer-btm-spacing: 85vh;
 }
@@ -953,13 +953,7 @@ body {
 
 /* Container */
 .container {
-  position: relative;
-  z-index: 2;
   background-color: #fff;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 .sec__wrap {
@@ -1082,7 +1076,6 @@ body {
   margin-top: -99.9vh;
   margin-bottom: -100vh;
   height: 100%;
-  overflow: hidden;
 }
 .about__inner {
   position: relative;
@@ -1608,6 +1601,75 @@ body {
 }
 .reveal-event__video video {
   width: 100%;
+}
+.reveal-event__gallery {
+  margin-top: 10px;
+}
+.reveal-event__gallery .gallery-thum .swiper-slide {
+  cursor: pointer;
+}
+.reveal-event__gallery .gallery-thum .swiper-button-next,
+.reveal-event__gallery .gallery-thum .swiper-button-prev {
+  color: #010101;
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.reveal-event__gallery .gallery-thum .swiper-button-next svg,
+.reveal-event__gallery .gallery-thum .swiper-button-prev svg {
+  width: unset;
+  height: unset;
+}
+.reveal-event__gallery .gallery-thum .swiper-button-next:after,
+.reveal-event__gallery .gallery-thum .swiper-button-prev:after {
+  display: none;
+}
+.reveal-event__gallery .gallery-thum .swiper-button-prev svg {
+  transform: rotate(180deg);
+}
+.reveal-event .gallery-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0 var(--grid-margin);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  display: none;
+}
+.reveal-event .gallery-modal.open {
+  display: flex;
+}
+.reveal-event .gallery-modal__content {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 4px;
+}
+.reveal-event .gallery-modal__content .gallery-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  color: #fff;
+  font-size: 2rem;
+}
+.reveal-event .gallery-modal__content .swiper-slide img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+}
+.reveal-event .gallery-modal__content .swiper-button-next,
+.reveal-event .gallery-modal__content .swiper-button-prev {
+  color: #fff;
+}
+.reveal-event .gallery-modal__content .swiper-button-next:after,
+.reveal-event .gallery-modal__content .swiper-button-prev:after {
+  font-size: 34px;
 }
 
 .product {

@@ -1,12 +1,6 @@
 /* Container */
 .container {
-    position: relative;
-    z-index: 2;
     background-color: $color-white;
-}
-
-::-webkit-scrollbar{
-    display: none;
 }
 
 .sec {
@@ -129,7 +123,6 @@
     margin-top: -99.9vh;
     margin-bottom: -100vh;
     height: 100%;
-    overflow: hidden;
     
     &__inner{
         position: relative;
@@ -150,7 +143,6 @@
             gap: 25px;
             opacity: 0;
             pointer-events: none;
-            // visibility: hidden;
 
             @include tablet {
                 justify-content: flex-end;
@@ -167,7 +159,6 @@
             }
 
             .about__title{
-
                 span{
                     position: relative;
                     display: inline-block;
@@ -697,6 +688,90 @@
     &__video{
         video {
             width:100%;
+        }
+    }
+
+    &__gallery{
+        margin-top: 10px;
+        
+        .gallery-thum {
+            .swiper-slide{
+                cursor: pointer;
+            }
+            
+            .swiper-button-next,
+            .swiper-button-prev {
+                color: $color-black;
+                background-color: $color-white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+
+                svg {
+                    width:unset;
+                    height: unset;
+                }
+
+                &:after{
+                    display: none;
+                }
+            }
+
+            .swiper-button-prev {
+                svg{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .gallery-modal{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        padding: 0 var(--grid-margin);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        display: none;
+
+        &.open {
+            display: flex;
+        }
+
+        &__content{
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 4px;
+
+            .gallery-modal__close{
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 2;
+                color: $color-white;
+                font-size: 2rem;
+            }
+
+            .swiper-slide {
+                img{
+                    display: block;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+            .swiper-button-next,
+            .swiper-button-prev {
+                color: $color-white;
+    
+                &:after{
+                    font-size: 34px;
+                }
+            }   
         }
     }
 }
