@@ -160,138 +160,68 @@ function section() {
 //////////////////////////////////////////////////
 ////////// Canvas
 function canvas() {
-    const canvas = document.querySelector("#canvasAbout");
-    const ctx = canvas.getContext("2d");
-
-    // canvasAbout
-    function canvasAbout() {
-        const frameCount = 384;
-
-        // 숫자 인덱스를 최소 길이가 3자인 문자열로 반환하고 필요한 경우 0으로 채움
-        // toString() - 객체가 가지고 있는 정보나 값들을 문자열로 만들어 리턴하는 메서드
-        // padStart() - String 값의 메서드로, 결과 문자열이 주어진 길이에 도달할 때까지 시작 부분에 다른 문자열을 (필요하다면 여러 번) 채우는 메서드
-        const currentFrame = (idx) => {
-            return `./assets/images/sequences/about/${idx.toString().padStart(3, '0')}.webp`
-        };
-
+    function setCanvas(id, triggerClass, frameCount, imagePath) {
+        const canvas = document.querySelector(id);
+        const ctx = canvas.getContext("2d");
+        
+        const currentFrame = (idx) => `${imagePath}/${idx.toString().padStart(3, '0')}.webp`;
+        
         const images = [];
-        const card = {
-            frame: 0,
-        };
-
-        // 이미지 프레임 수만큼 반복문을 돌려 빈 images배열에 이미지 객체들을 push
+        const card = { frame: 0 };
+        
         for (let i = 0; i < frameCount; i++) {
             const img = new Image();
             img.src = currentFrame(i + 1);
             images.push(img);
         }
-
-        gsap.to(card, {
-            frame: frameCount - 1, //마지막 프레임으로 가게 frameCount - 1
-            snap: "frame", //스크롤 위치에 따라 애니메이션의 특정 프레임 값에 스냅핑되도록 하는 설정
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".about",
-                scrub: 1,
-                start: "0% 0%",
-                end: "600%",
-                //markers: true
-            },
-            onUpdate: render,
-        });
-
-
-        // 첫 번째 이미지 로드 후 render 함수를 호출
-        images[0].onload = render;
-
-        // 이미지를 캔버스에 렌더링해주는 함수
-        function render() {
-            // 캔버스의 전체 영역을 클리어하여 투명으로 함 > 다음 프레임의 이미지를 그리기 전에 이전 프레임의 이미지를 지우는 역할 > 애니메이션이 부드럽게 보임
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // images[card.frame]: card 객체의 frame 속성에 해당하는 이미지를 가져온다.
-            // (0, 0) 위치부터 시작, 뒤의 것은 그려지는 이미지의 너비와 높이
-            ctx.drawImage(images[card.frame], 0, 0, canvas.offsetWidth, canvas.offsetHeight);
-        }
-    }
-
-    const canvas2 = document.querySelector("#canvasScene");
-    const ctx2 = canvas2.getContext("2d");
-
-    // canvasScene
-    function canvasScene() {
-        const frameCount = 193;
-
-        const currentFrame = (idx) => {
-            return `./assets/images/sequences/scene/${idx.toString().padStart(3, '0')}.webp`
-        };
-
-        const images = [];
-        const card = {
-            frame: 0,
-        };
-
-        for (let i = 0; i < frameCount; i++) {
-            const img = new Image();
-            img.src = currentFrame(i + 1);
-            images.push(img);
-        }
-
+        
         gsap.to(card, {
             frame: frameCount - 1,
             snap: "frame",
             ease: "none",
             scrollTrigger: {
-                trigger: ".scene",
+                trigger: triggerClass,
                 scrub: 1,
                 start: "0% 0%",
                 end: "600%",
-                //pin: true,
-                //markers: true
             },
             onUpdate: render,
         });
-
+        
         images[0].onload = render;
-
+        
         function render() {
-            ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-            ctx2.drawImage(images[card.frame], 0, 0, canvas2.offsetWidth, canvas2.offsetHeight);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(images[card.frame], 0, 0, canvas.offsetWidth, canvas.offsetHeight);
         }
+
+        return canvas;
     }
-    
-    function resizeCanvas() {
+
+    function resizeCanvas(canvases) {
         const aspectRatio = 16 / 9;
         const width = window.innerWidth;
         const height = window.innerHeight;
-      
-        if (width / height > aspectRatio) {
-          // 화면이 넓으면 높이를 기준으로 확대
-          canvas.width = width;
-          canvas.height = width / aspectRatio;
-          canvas2.width = width;
-          canvas2.height = width / aspectRatio;
-        } else {
-          // 화면이 높으면 너비를 기준으로 확대
-          canvas.width = height * aspectRatio;
-          canvas.height = height;
-          canvas2.width = height * aspectRatio;
-          canvas2.height = height;
-        }
-      
-        // 비율 유지하면서 full-size
-        canvas.style.width = `${canvas.width}px`;
-        canvas.style.height = `${canvas.height}px`;
-
-        canvas2.style.width = `${canvas.width}px`;
-        canvas2.style.height = `${canvas.height}px`;
-    
-        canvasAbout();
-        canvasScene();
+        const largerSide = width / height > aspectRatio ? { w: width, h: width / aspectRatio } : { w: height * aspectRatio, h: height };
+        
+        canvases.forEach(canvas => {
+            canvas.width = largerSide.w;
+            canvas.height = largerSide.h;
+            canvas.style.width = `${canvas.width}px`;
+            canvas.style.height = `${canvas.height}px`;
+        });
     }
-    
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('orientationchange', resizeCanvas); // 모바일 기기에서 화면 회전 시 높이 조정
-    resizeCanvas();
+
+    const canvasAbout = setCanvas("#canvasAbout", ".about", 384, "./assets/images/sequences/about");
+    const canvasScene = setCanvas("#canvasScene", ".scene", 193, "./assets/images/sequences/scene");
+
+    function onResize() {
+        resizeCanvas([canvasAbout, canvasScene]);
+    }
+
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+    onResize();
 }
 
 
