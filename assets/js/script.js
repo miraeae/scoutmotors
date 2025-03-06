@@ -258,28 +258,32 @@ function canvas() {
             ctx2.drawImage(images[card.frame], 0, 0, canvas2.offsetWidth, canvas2.offsetHeight);
         }
     }
-
-    // Resize
-    function getViewportHeight() {
-        // 모바일 여부 확인하려면
-        // var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 안드로이드 아이폰을 검사해 체크 or
-        //var isMobile = /Mobi/i.test(window.navigator.userAgent); // "Mobi" 가 User agent에 포함되어 있으면 모바일
-
-        // 모바일 Safari 여부 확인
-        const isMobileSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/.test(navigator.userAgent);
-        
-        return isMobileSafari ? window.innerHeight : document.documentElement.clientHeight;
-    }
     
     function resizeCanvas() {
-        const width = document.documentElement.clientWidth;
-        const height = getViewportHeight();
-    
-        canvas.width = width;
-        canvas.height = height;
-    
-        canvas2.width = width;
-        canvas2.height = height;
+        const aspectRatio = 16 / 9;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+      
+        if (width / height > aspectRatio) {
+          // 화면이 넓으면 높이를 기준으로 확대
+          canvas.width = width;
+          canvas.height = width / aspectRatio;
+          canvas2.width = width;
+          canvas2.height = width / aspectRatio;
+        } else {
+          // 화면이 높으면 너비를 기준으로 확대
+          canvas.width = height * aspectRatio;
+          canvas.height = height;
+          canvas2.width = height * aspectRatio;
+          canvas2.height = height;
+        }
+      
+        // 비율 유지하면서 full-size
+        canvas.style.width = `${canvas.width}px`;
+        canvas.style.height = `${canvas.height}px`;
+
+        canvas2.style.width = `${canvas.width}px`;
+        canvas2.style.height = `${canvas.height}px`;
     
         canvasAbout();
         canvasScene();
