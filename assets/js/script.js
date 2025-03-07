@@ -307,7 +307,7 @@ function layout() {
         body.classList.add("scroll-lock");
         menuTl.play();
         document.addEventListener("keydown", trapFocus);
-        menu.setAttribute('aria-expanded', 'true');
+        menuTrigger.setAttribute("aria-expanded", "true");
     });
 
     // Close
@@ -316,13 +316,13 @@ function layout() {
         body.classList.remove("scroll-lock");
         menuTl.reverse();
         document.removeEventListener("keydown", trapFocus);
-        menu.setAttribute('aria-expanded', 'false');
+       menuTrigger.setAttribute("aria-expanded", "false");
     }
 
     menuCloseButton.addEventListener("click", closeMenu);
 
     document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && menu.getAttribute('aria-expanded') === 'true') {
+        if (event.key === "Escape" && menuTrigger.getAttribute("aria-expanded") === "true") {
             closeMenu();
         }
     });
@@ -440,7 +440,6 @@ function gallery() {
         lenis.stop();
         document.body.classList.add("scroll-rock");
         modal.classList.add("open");
-        modal.setAttribute("aria-expanded", "true");
         modalSwiper.slideTo(index); // 모달 갤러리의 동일한 이미지로 이동
         closeModalBtn.focus(); // 모달이 열리면 닫기 버튼에 포커스 이동
         document.addEventListener("keydown", trapFocus);
@@ -469,7 +468,6 @@ function gallery() {
         lenis.start();
         document.body.classList.remove("scroll-rock");
         modal.classList.remove("open");
-        modal.setAttribute("aria-expanded", "false");
         document.removeEventListener("keydown", trapFocus);
         thumbnailGallery[modalSwiper.activeIndex].focus(); // 모달이 닫히면 active된 동일 이미지로 포커스 이동
     }

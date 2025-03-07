@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,13 +41,13 @@
                 <div class="header__reserve header__nav">
                     <a href="#" class="header__link">Reserve</a>
                 </div>
-                <button type="button" aria-label="Open menu" class="menu-trigger">
+                <button type="button" aria-label="Open menu" class="menu-trigger" aria-haspopup="true" aria-expanded="false">
                     <span class="menu-trigger__bar"></span>
                     <span class="menu-trigger__bar"></span>
                 </button>
             </div>
         </div>
-        <div class="menu" aria-label="Full menu" aria-expanded="false">
+        <div class="menu" aria-label="Full menu">
             <div class="menu__inner">
                 <button type="button" aria-label="Menu Close" class="menu-close">
                     <span class="menu-close__bar"></span>
@@ -120,7 +120,7 @@
                             <p class="reserve-cta__text">Reservations open now.</p>
                             <p class="reserve-cta__text">Be part of the pioneers.</p>
                         </div>
-                        <hr class="reserve-cta__hr"></hr>
+                        <hr class="reserve-cta__hr">
                         <div class="reserve-cta__btm">
                             <button aria-hidden="true" tabindex="-1" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
                         </div>
@@ -139,7 +139,7 @@
                 <h1 class="hero__title sec__title">Scouts always come back.</h1>
                 <div class="hero__text-wrap">
                     <p class="hero__text">American made</p>
-                    <p class="hero__subtitle">Entry models starting as low as $50,000 with available incentives. Retail prices starting under $60,000.<br/>
+                    <p class="hero__subtitle">Entry models starting as low as $50,000 with available incentives. Retail prices starting under $60,000.<br>
                         Initial production targeted for 2027. Full disclaimer.
                     </p>
                     <p class="hero__text">EST 2022</p>
@@ -159,9 +159,9 @@
                     <div class="reserve-cta__top">
                         <p class="reserve-cta__text">Be part of the pioneers.</p>
                     </div>
-                    <hr class="reserve-cta__hr"></hr>
+                    <hr class="reserve-cta__hr">
                     <div class="reserve-cta__btm">
-                        <a href="#" aria-hidden="true" tabindex="-1" class="reserve-cta__button box-button box-button--white">Reserve Now</a>
+                        <button href="#" aria-hidden="true" tabindex="-1" class="reserve-cta__button box-button box-button--white">Reserve Now</button>
                     </div>
                 </div>
                 <a href="#" class="reserve-cta__link">
@@ -312,6 +312,7 @@
             </div>
         </section>
         <section class="sec scene">
+            <h2 class="sr-only">Image scene</h2>
             <canvas class="scene__canvas" id="canvasScene"></canvas>
         </section>
         <section class="sec camp">
@@ -352,7 +353,7 @@
                     </div>
                 </div>
                 <div class="reveal-event__video">
-                    <video width="100%" controls="" preload="metadata" disablepictureinpicture="" controlslist="nodownload noplaybackrate" poster="./assets/images/gallery-video-thum.jpg">
+                    <video controls="" preload="metadata" poster="./assets/images/gallery-video-thum.jpg">
                         <source src="https://videos.ctfassets.net/bi0eniwfxrs8/6DpSzBqkk5NvLQLQkCUWWg/1cb76be2be6792e30cbddfdb4f3e8a41/Scout_Reveal_Sizzle_Final_Deliverable.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -398,7 +399,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-modal" aria-modal="true" aria-expanded="false" tabindex="-1">
+                    <div class="gallery-modal" role="dialog" aria-modal="true" tabindex="-1">
                         <div class="gallery-modal__content">
                             <button class="gallery-modal__close">×</button>
                             <div class="swiper gallery-modal__swiper">
@@ -621,7 +622,7 @@
                 <span>Reserve</span>
                 <span>Reserve</span>
             </div>
-            <button class="footer__button box-button box-button--black" role="button">Reserve Now</button>
+            <button class="footer__button box-button box-button--black">Reserve Now</button>
         </div>
     </footer>
 </body>
