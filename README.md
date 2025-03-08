@@ -1,4 +1,4 @@
-# 🚗 Scout Motors <br>인터렉티브 사이트 클론 코딩
+# 🚗 Scout Motors <br>인터랙티브 사이트 클론 코딩
 
 시퀀스 스크롤 애니메이션을 적용하고, IR 기법과 WAI-ARIA, Skip Menu 등의 기능을 활용하여 웹 접근성을 고려한 반응형 클론 코딩 사이트입니다.
 
@@ -71,20 +71,27 @@
 
 ![Image](https://github.com/user-attachments/assets/17a03095-0e7e-44cd-8df6-883f0a23c311)
 
-이를 해결하기 위해 trapFocus 함수를 구현하였습니다. 메뉴 오픈 시 trapFocus 함수를 호출하고, 메뉴를 닫으면 제거하도록 했습니다.
+이를 해결하기 위해 trapFocus 함수를 구현하였습니다. 메뉴 오픈 시 trapFocus 함수를 호출하고, 메뉴를 닫으면 제거하도록 했습니다. 추가로 다른 곳에서도 사용될 것이기 때문에 모듈화를 해주었습니다.
 
 ```
-function trapFocus(event) {
-    const firstElement = menuLinks[0];
-    const lastElement = menuLinks[menuLinks.length - 1];
+// TrapFocus
+export function getFocusableElements(container) {
+    return container.querySelectorAll(
+        "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex]:not([tabindex='-1'], *[contenteditable]"
+    );
+}
+
+export function trapFocus(event, focusableEls) {
+    const firstElement = focusableEls[0];
+    const lastElement = focusableEls[focusableEls.length - 1];
 
     if (event.key === "Tab") {
-        if (event.shiftKey) { // 첫 요소에서 Shift + Tab 하면 마지막 요소로 이동
+        if (event.shiftKey) { // Shift + Tab: 첫 요소에서 마지막 요소로 이동
             if (document.activeElement === firstElement) {
                 event.preventDefault();
                 lastElement.focus();
             }
-        } else { // 마지막 요소 다음 다시 첫 요소로 이동
+        } else { // Tab: 마지막 요소에서 첫 요소로 이동
             if (document.activeElement === lastElement) {
                 event.preventDefault();
                 firstElement.focus();
@@ -152,10 +159,11 @@ function openModal(index) {
     lenis.stop();
     document.body.classList.add("scroll-rock");
     modal.classList.add("open");
-    modal.setAttribute("aria-expanded", "true");
     modalSwiper.slideTo(index); // 모달 갤러리의 동일한 이미지로 이동
     closeModalBtn.focus(); // 모달이 열리면 닫기 버튼에 포커스 이동
-    document.addEventListener("keydown", trapFocus);
+    document.addEventListener("keydown", function(event) {
+        trapFocus(event, focusableEls);
+    });
 }
 ```
 
@@ -184,12 +192,12 @@ function closeModal() {
     lenis.start();
     document.body.classList.remove("scroll-rock");
     modal.classList.remove("open");
-    modal.setAttribute("aria-expanded", "false");
-    document.removeEventListener("keydown", trapFocus);
+    document.removeEventListener("keydown", function(event) {
+        trapFocus(event, focusableEls);
+    });
     thumbnailGallery[modalSwiper.activeIndex].focus(); // 모달이 닫히면 썸네일 갤러리의 동일 이미지로 포커스 이동
 }
 ```
-
 
 ***
 
@@ -270,8 +278,6 @@ function render() {
 }
 ```
 
-<br>
-
 #### 🛠 canvas 사이즈 이슈 해결
 
 canvas의 사이즈를 지정해 줄 때 아래의 문제가 있었습니다.
@@ -305,6 +311,11 @@ window.addEventListener("resize", onResize);
 window.addEventListener("orientationchange", onResize);
 onResize();
 ```
+``const largerSide = width / height > aspectRatio ? { w: width, h: width / aspectRatio } : { w: height * aspectRatio, h: height };``
+
+- 화면의 가로 세로 비율(width / height)과 16:9 비율을 비교
+- 만약 화면의 가로 세로 비율이 16:9보다 크면(화면이 가로로 더 넓으면), 캔버스의 너비를 화면 너비(width)로 설정하고, 높이는 비율에 맞게 계산 (height = width / aspectRatio).
+- 반대로 화면의 세로가 더 길면, 캔버스의 높이를 화면 높이(height)로 설정하고, 너비는 비율에 맞게 계산 (width = height * aspectRatio).
 
 시퀀스 애니메이션과 함께 실행되어야하는 pin, 텍스트 효과는 충돌 방지를 위해 따로 작성을 해주었습니다.
 
