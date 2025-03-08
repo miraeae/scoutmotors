@@ -1,11 +1,10 @@
-document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
+import { trapFocus, getFocusableElements } from "./common.js";
+gsap.registerPlugin(ScrollTrigger);
 
-    layout();
-    section();
-    canvas();
-    gallery();
-});
+layout();
+section();
+canvas();
+gallery();
 
 
 //////////////////////////////////////////////////
@@ -225,7 +224,6 @@ function canvas() {
     onResize();
 }
 
-
 //////////////////////////////////////////////////
 ////////// Layout
 function layout() {
@@ -254,12 +252,13 @@ function layout() {
         }
     });
 
+
     // Header Menu
     const body = document.body;
     const menu = document.querySelector(".menu");
     const menuTrigger = document.querySelector(".menu-trigger");
     const menuCloseButton = document.querySelector(".menu-close");
-    const menuLinks = menu.querySelectorAll("a, button"); // 포커스 가능한 요소들(+ input, select, textarea 등)
+    const focusableEls = getFocusableElements(menu);
 
     // Header menu open animation
     const mm = gsap.matchMedia();
@@ -281,24 +280,6 @@ function layout() {
         .from(".menu__logo", { scale: "0.9", duration: 0.5 }, "<");
     });
 
-    function trapFocus(event) {
-        const firstElement = menuLinks[0];
-        const lastElement = menuLinks[menuLinks.length - 1];
-
-        if (event.key === "Tab") {
-            if (event.shiftKey) { // 첫 요소에서 Shift + Tab 하면 마지막 요소로 이동
-                if (document.activeElement === firstElement) {
-                    event.preventDefault();
-                    lastElement.focus();
-                }
-            } else { // 마지막 요소 다음 다시 첫 요소로 이동
-                if (document.activeElement === lastElement) {
-                    event.preventDefault();
-                    firstElement.focus();
-                }
-            }
-        }
-    }
 
     // Header menu click event
     // Open
@@ -306,8 +287,11 @@ function layout() {
         lenis.stop();
         body.classList.add("scroll-lock");
         menuTl.play();
-        document.addEventListener("keydown", trapFocus);
         menuTrigger.setAttribute("aria-expanded", "true");
+
+        document.addEventListener("keydown", function (event) {
+            trapFocus(event, focusableEls);
+        });
     });
 
     // Close
@@ -315,8 +299,11 @@ function layout() {
         lenis.start();
         body.classList.remove("scroll-lock");
         menuTl.reverse();
-        document.removeEventListener("keydown", trapFocus);
-       menuTrigger.setAttribute("aria-expanded", "false");
+        menuTrigger.setAttribute("aria-expanded", "false");
+
+        document.removeEventListener("keydown", function (event) {
+            trapFocus(event, focusableEls);
+        });
     }
 
     menuCloseButton.addEventListener("click", closeMenu);
@@ -358,7 +345,8 @@ function layout() {
     });
 }
 
-
+//////////////////////////////////////////////////
+////////// Gallery
 function gallery() {
     // Thumbs gallery 
     var thumbSwiper = new Swiper('.gallery-thum', {
@@ -397,8 +385,9 @@ function gallery() {
     const modal = document.querySelector(".gallery-modal");
     const modalSwiper = document.querySelector(".gallery-modal__swiper").swiper;
     const closeModalBtn = document.querySelector(".gallery-modal__close");
-    const focusableEls = modal.querySelectorAll("button:not([disabled]), [tabindex]:not([tabindex='-1']");
+    const focusableEls = getFocusableElements(modal);
 
+    //// 모달 열기
     // 모든 슬라이드에 tabindex="0" 추가
     thumbnailGallery.forEach((item, index) => {
         item.setAttribute("tabindex", "0");
@@ -417,34 +406,18 @@ function gallery() {
         });
     });
 
-    function trapFocus(event) {
-        const firstElement = focusableEls[0];
-        const lastElement = focusableEls[focusableEls.length - 1];
-
-        if (event.key === "Tab") {
-            if (event.shiftKey) {
-                if (document.activeElement === firstElement) {
-                    event.preventDefault();
-                    lastElement.focus();
-                }
-            } else {
-                if (document.activeElement === lastElement) {
-                    event.preventDefault();
-                    firstElement.focus();
-                }
-            }
-        }
-    }
-
     function openModal(index) {
         lenis.stop();
         document.body.classList.add("scroll-rock");
         modal.classList.add("open");
         modalSwiper.slideTo(index); // 모달 갤러리의 동일한 이미지로 이동
         closeModalBtn.focus(); // 모달이 열리면 닫기 버튼에 포커스 이동
-        document.addEventListener("keydown", trapFocus);
+        document.addEventListener("keydown", function(event) {
+            trapFocus(event, focusableEls);
+        });
     }
 
+    //// 모달 닫기
     // 클릭 시 모달 닫기
     closeModalBtn.addEventListener("click", function () {
         closeModal();
@@ -457,9 +430,9 @@ function gallery() {
         }
     });
 
-    // ESC 키로 닫기
+    // ESC 키로 모달 닫기
     document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && modal.getAttribute("aria-expanded") === 'true') {
+        if (event.key === "Escape" && modal.classList.contains("open")) {
             closeModal();
         }
     });
@@ -468,7 +441,9 @@ function gallery() {
         lenis.start();
         document.body.classList.remove("scroll-rock");
         modal.classList.remove("open");
-        document.removeEventListener("keydown", trapFocus);
+        document.removeEventListener("keydown", function(event) {
+            trapFocus(event, focusableEls);
+        });
         thumbnailGallery[modalSwiper.activeIndex].focus(); // 모달이 닫히면 active된 동일 이미지로 포커스 이동
     }
 }
