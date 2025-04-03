@@ -1,41 +1,3 @@
-/* Font */
-/* Scout */
-@font-face {
-  font-family: "Scout";
-  src: url("../fonts/ScoutSansV4-Regular_ttf.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Scout";
-  src: url("../fonts/ScoutSansV4-Medium_ttf.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Scout-wide";
-  src: url("../fonts/ScoutSansWideV4-Medium_ttf.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Scout-cond";
-  src: url("../fonts/ScoutSansSemiCondV4-Bold_ttf.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Scout-ibm-plex-mono";
-  src: url("../fonts/IBMPlexMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Scout-ibm-plex-mono";
-  src: url("../fonts/IBMPlexMono-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -110,6 +72,44 @@ button {
   cursor: pointer;
 }
 
+/* Font */
+/* Scout */
+@font-face {
+  font-family: "Scout";
+  src: url("../fonts/ScoutSansV4-Regular_ttf.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Scout";
+  src: url("../fonts/ScoutSansV4-Medium_ttf.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Scout-wide";
+  src: url("../fonts/ScoutSansWideV4-Medium_ttf.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Scout-cond";
+  src: url("../fonts/ScoutSansSemiCondV4-Bold_ttf.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Scout-ibm-plex-mono";
+  src: url("../fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Scout-ibm-plex-mono";
+  src: url("../fonts/IBMPlexMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
 /* Common */
 @media (max-width: 1024px) {
   html {
@@ -1893,4 +1893,4 @@ body {
   font-weight: 500;
   font-size: 0.6em;
   margin-right: 5px;
-}
+}/*# sourceMappingURL=style.css.map */
