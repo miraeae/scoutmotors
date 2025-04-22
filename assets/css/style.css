@@ -523,6 +523,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.25rem;
+  height: 100%;
 }
 .menu__product-item {
   position: relative;
@@ -907,6 +908,7 @@ body {
   top: 0;
   left: 0;
   overflow: hidden;
+  background: #010101;
 }
 .footer__bg img {
   width: 100%;

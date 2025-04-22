@@ -408,7 +408,7 @@ function gallery() {
 
     function openModal(index) {
         lenis.stop();
-        document.body.classList.add("scroll-rock");
+        document.body.classList.add("scroll-lock");
         modal.classList.add("open");
         modalSwiper.slideTo(index); // 모달 갤러리의 동일한 이미지로 이동
         closeModalBtn.focus(); // 모달이 열리면 닫기 버튼에 포커스 이동
@@ -439,7 +439,7 @@ function gallery() {
 
     function closeModal() {
         lenis.start();
-        document.body.classList.remove("scroll-rock");
+        document.body.classList.remove("scroll-lock");
         modal.classList.remove("open");
         document.removeEventListener("keydown", function(event) {
             trapFocus(event, focusableEls);
