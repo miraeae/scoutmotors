@@ -735,7 +735,7 @@
         padding: 0 var(--grid-margin);
         align-items: center;
         justify-content: center;
-        z-index: 1000;
+        z-index: 999;
         display: none;
 
         &.open {
@@ -755,6 +755,11 @@
                 z-index: 2;
                 color: $color-white;
                 font-size: 2rem;
+            }
+
+            .gallery-modal__swiper,
+            .gallery-modal__swiper * {
+            user-select: none;
             }
 
             .swiper-slide {

@@ -1638,7 +1638,7 @@ body {
   padding: 0 var(--grid-margin);
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 999;
   display: none;
 }
 .reveal-event .gallery-modal.open {
@@ -1657,6 +1657,10 @@ body {
   z-index: 2;
   color: #fff;
   font-size: 2rem;
+}
+.reveal-event .gallery-modal__content .gallery-modal__swiper,
+.reveal-event .gallery-modal__content .gallery-modal__swiper * {
+  user-select: none;
 }
 .reveal-event .gallery-modal__content .swiper-slide img {
   display: block;
